@@ -62,7 +62,7 @@ Cloud Foundry内のRouterによってHTTPリクエストは2インスタンス�
 ``` java
     @RequestMapping("/")
     String hello() {
-        return greeter.hello() + " (" + System.getenv("INSTANCE_INDEX") + ")"; // この行を変更
+        return greeter.hello() + " (" + System.getenv("CF_INSTANCE_INDEX") + ")"; // この行を変更
     }
 ```
 
