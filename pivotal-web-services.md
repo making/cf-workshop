@@ -36,7 +36,7 @@ Verification Codeを入力して「Submit」をクリック
 
 ![image](https://qiita-image-store.s3.amazonaws.com/0/1852/c9539303-3398-e9ec-2a10-cbdeb9393552.png)
 
-Organization名(≒プロジェクト名)を入力し、「Start 60-day Free Trial」をクリック。
+Organization名(≒プロジェクト名)を入力し、「Start 60-day Free Trial」をクリック。
 Organization名はイニシャルなどを使って一意の名前にしてください。
 
 ![image](https://qiita-image-store.s3.amazonaws.com/0/1852/4d85b44a-1405-3638-304f-63ea895923b1.png)
