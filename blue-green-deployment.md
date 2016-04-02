@@ -56,7 +56,7 @@ $ while true; do curl http://hello-tmaki.cfapps.io; echo; sleep 1;done
 ビルドしてpushします。これはGreenに相当します。
 
 ``` console
-$ ./mvnw clean compile
+$ ./mvnw clean package
 $ cf push hello-tmaki-green # manifest内のapplication nameをoverride
 ```
 
