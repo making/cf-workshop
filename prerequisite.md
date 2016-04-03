@@ -16,6 +16,7 @@ Macの場合はインストール不要です。
 Windowsの場合は、[Git](https://git-scm.com/)をインストールすれば同梱されます。
 
 ### (オプション) Golang
+[Autopilotプラグインを使う](https://github.com/Pivotal-Japan/cf-workshop/blob/master/blue-green-deployment.md#autopilotプラグインを使う)で使用します。
 
 https://golang.org/dl/ から`go`コマンドをインストールしてください。
 
