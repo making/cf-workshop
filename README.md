@@ -1,5 +1,7 @@
 # cf-workshop
 
+## Contents
+
 1. [事前準備 / Prerequisite](prerequisite.md)
 2. [Pivotal Web Servicesのアカウント作成 / Create PWS account](pivotal-web-services.md)
 3. [簡単なアプリケーションをデプロイ / Deploy hello world](deploy-application.md)
@@ -9,6 +11,8 @@
 7. [Blue-Greenデプロイ / Blue-Green deployment](blue-green-deployment.md)
 
 To be continued
+
+## Backlog
 
 - [ ] User Provided Serviceの利用
 - [ ] Service Brokerの作成
