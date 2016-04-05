@@ -17,5 +17,6 @@ To be continued
 
 - [ ] User Provided Serviceの利用
 - [ ] Service Brokerの作成
+- [ ] Organization / Space / User / Roleの作成
 - [ ] Auto Scaleの利用
 - [x] PCF Devを使用したローカルCloud Foundry環境
