@@ -1,4 +1,4 @@
-## PCF DevでローカルCloud Foundry環境を作る
+## PCF Devを用いたローカルCloud Foundry環境
 
 [PCF Dev](https://docs.pivotal.io/pcf-dev/index.html)を使うとVagrantを使って開発用にローカルで簡単にCloud Foundry環境を構築できます。
 
