@@ -49,3 +49,7 @@ https://golang.org/dl/ から`go`コマンドをインストールしてくだ�
 $ cf -v
 cf version 6.15.0+fa1bfe2-2016-01-13
 ```
+
+### Pivotal Web Servicesのアカウント作成
+
+[こちら](pivotal-web-services.md)を参照してください。
