@@ -9,6 +9,14 @@
 
 環境変数`JAVA_HOME`にインストールしたディレクトリを設定してください。
 
+Macユーザーは
+
+``` console
+export JAVA_HOME=`/usr/libexec/java_home`
+```
+
+で設定できます
+
 ### Curlコマンド
 
 Macの場合はインストール不要です。
