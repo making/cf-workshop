@@ -280,3 +280,5 @@ try-scale-over-v1 (stopped)  >>>>>>>>>> try-scale-over-v2 (started)
 ```
 
 `curl`の結果が`V1`から`V2`へと変わっていくのを確認できるでしょう。
+
+**このプラグインはCLIの実行結果文字列をパースしているため、必ず英語環境で実行してください。CLIが日本語表示の場合は`LANG=C cf scaleover ...`としてください。**
