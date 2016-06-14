@@ -68,6 +68,7 @@ $ cf restart hello-redis-tmaki
 
 これで`hello-redis-tmaki`のログはPapertrailへ転送されます。
 
+> 本チュートリアルを[PCF Dev](pcf-dev.md)で実施する場合は、[v0.16.0](https://github.com/pivotal-cf/pcfdev/releases/tag/v0.16.0)以上を使用してください
 
 [Dashboard](https://papertrailapp.com/dashboard)にアクセスし、`hello-cf`をクリックしてください。
 
@@ -85,4 +86,3 @@ $ cf restart hello-redis-tmaki
 $ cf delete hello-redis-tmaki
 ```
 
-> 本チュートリアルを[PCF Dev](pcf-dev.md)で実施する場合は、[v0.16.0](https://github.com/pivotal-cf/pcfdev/releases/tag/v0.16.0)以上を使用してください
