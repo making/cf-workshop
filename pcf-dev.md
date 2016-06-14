@@ -1,5 +1,7 @@
 ## PCF Devを用いたローカルCloud Foundry環境
 
+**v0.16.0からPCF Devのインストール方法が変わりました。本ドキュメントをアップデートするまで、[公式ドキュメント](https://docs.pivotal.io/pcf-dev/)を参照してください。**
+
 [PCF Dev](https://docs.pivotal.io/pcf-dev/index.html)を使うとVagrantを使って開発用にローカルで簡単にCloud Foundry環境を構築できます。
 
 Pivotal Cloud Foundryが提供しているサービス(MySQL、Redis、RabbitMQ)も初めから組み込まれているため、ローカルでCloud Foundryを試したい場合に最適です。
