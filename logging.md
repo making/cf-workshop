@@ -84,3 +84,5 @@ $ cf restart hello-redis-tmaki
 ``` console
 $ cf delete hello-redis-tmaki
 ```
+
+> 本チュートリアルを[PCF Dev](pcf-dev.md)で実施する場合は、[v0.16.0](https://github.com/pivotal-cf/pcfdev/releases/tag/v0.16.0)以上を使用してください
