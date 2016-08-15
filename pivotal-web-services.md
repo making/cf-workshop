@@ -22,11 +22,11 @@
 
 「I Have read and agree to the Terms of Service for Pivotal Web Services」にチェックを入れ、「Next: Claim Your Trial」をクリック
 
-![image](https://qiita-image-store.s3.amazonaws.com/0/1852/2c50f0c3-c4dc-48ab-25f6-32016e10f90f.png)
+![image](https://qiita-image-store.s3.amazonaws.com/0/1852/680d2d0e-2cc7-7e04-6b0d-36e80e41b229.png)
 
 電話番号を入力
 
-![image](https://qiita-image-store.s3.amazonaws.com/0/1852/15791603-49b7-b89d-5640-88dc39278b21.png)
+![image](https://qiita-image-store.s3.amazonaws.com/0/1852/7ff8e35d-8f8b-f939-b38a-025e94396834.png)
 
 SMSにVerification Codeが送信されます
 
@@ -34,16 +34,16 @@ SMSにVerification Codeが送信されます
 
 Verification Codeを入力して「Submit」をクリック
 
-![image](https://qiita-image-store.s3.amazonaws.com/0/1852/c9539303-3398-e9ec-2a10-cbdeb9393552.png)
+![image](https://qiita-image-store.s3.amazonaws.com/0/1852/c8b45ddf-e8a6-e687-d0ce-c4e982a893f1.png)
 
-Organization名(≒プロジェクト名)を入力し、「Start 60-day Free Trial」をクリック。
-Organization名はイニシャルなどを使って一意の名前にしてください。
+Organization名(≒プロジェクト名)を入力し、「Start Free Trial」をクリック。
+Organization名はイニシャルなどを使ってグローバルで一意の名前にしてください。
 
-![image](https://qiita-image-store.s3.amazonaws.com/0/137168/3c2b20bc-ee19-12ce-204c-e3e5b2400d64.png)
+![image](https://qiita-image-store.s3.amazonaws.com/0/1852/d5cec735-f3c3-2678-42bd-2e297d03ebf4.png)
 
 コンソール画面が表示されます。
 
-![image](https://qiita-image-store.s3.amazonaws.com/0/137168/cb14e9a8-f649-c1d5-0898-9fad971cfac1.png)
+![image](https://qiita-image-store.s3.amazonaws.com/0/1852/49270f3f-4f77-eae9-c1d7-e5e5e72371ca.png)
 
 `cf login`コマンドでPWSにログインします。
 
@@ -51,21 +51,21 @@ Organization名はイニシャルなどを使って一意の名前にしてく�
 $ cf login -a api.run.pivotal.io
 API endpoint: api.run.pivotal.io
 
-Email> ***@gmail.com
+Email> yourmail@examle.com
 
 Password>
 Authenticating...
 OK
 
-Targeted org tmaki
+Targeted org hajiboot
 
 Targeted space development
 
 
 
-API endpoint:   https://api.run.pivotal.io (API version: 2.52.0)   
-User:           ***@gmail.com   
-Org:            tmaki   
+API endpoint:   https://api.run.pivotal.io (API version: 2.58.0)   
+User:           yourmail@example.com   
+Org:            hajiboot
 Space:          development
 ```
 
