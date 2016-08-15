@@ -39,11 +39,11 @@ Verification Codeを入力して「Submit」をクリック
 Organization名(≒プロジェクト名)を入力し、「Start 60-day Free Trial」をクリック。
 Organization名はイニシャルなどを使って一意の名前にしてください。
 
-![image](https://qiita-image-store.s3.amazonaws.com/0/1852/4d85b44a-1405-3638-304f-63ea895923b1.png)
+![image](https://qiita-image-store.s3.amazonaws.com/0/137168/3c2b20bc-ee19-12ce-204c-e3e5b2400d64.png)
 
 コンソール画面が表示されます。
 
-![image](https://qiita-image-store.s3.amazonaws.com/0/1852/48a0339c-9f63-85b0-f72c-770a28683941.png)
+![image](https://qiita-image-store.s3.amazonaws.com/0/137168/cb14e9a8-f649-c1d5-0898-9fad971cfac1.png)
 
 `cf login`コマンドでPWSにログインします。
 
@@ -53,7 +53,7 @@ API endpoint: api.run.pivotal.io
 
 Email> ***@gmail.com
 
-Password> 
+Password>
 Authenticating...
 OK
 
@@ -62,7 +62,7 @@ Targeted org tmaki
 Targeted space development
 
 
-                   
+
 API endpoint:   https://api.run.pivotal.io (API version: 2.52.0)   
 User:           ***@gmail.com   
 Org:            tmaki   
