@@ -14,11 +14,11 @@
 
 アクティベーション用リンクが入力したメールアドレスに送信されます
 
-![image](https://qiita-image-store.s3.amazonaws.com/0/1852/e48458b8-8169-92d0-af59-b2b811341b41.png)
+![image](https://qiita-image-store.s3.amazonaws.com/0/1852/10934fc8-0109-7ff9-6da9-50d50921816a.png)
 
 メールを確認し、「Verify your email address」をクリック
 
-![image](https://qiita-image-store.s3.amazonaws.com/0/1852/abd00bb9-d275-80c6-5446-04d98eedd4a1.png)
+![image](https://qiita-image-store.s3.amazonaws.com/0/1852/9004f268-c6b9-0cd1-62e0-e38f2ecad0a6.png)
 
 「I Have read and agree to the Terms of Service for Pivotal Web Services」にチェックを入れ、「Next: Claim Your Trial」をクリック
 
