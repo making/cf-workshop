@@ -17,8 +17,10 @@ To be continued
 
 ## Backlog
 
+- [ ] ログの転送にlogit.ioを追加
+- [ ] PCF Metrixの利用
 - [ ] User Provided Serviceの利用
-- [x] Service Brokerの作成 ([別資料](https://github.com/Pivotal-Japan/service-broker-workshop))
 - [ ] Organization / Space / User / Roleの作成
 - [ ] Auto Scaleの利用
 - [x] PCF Devを使用したローカルCloud Foundry環境
+- [x] Service Brokerの作成 ([別資料](https://github.com/Pivotal-Japan/service-broker-workshop))
