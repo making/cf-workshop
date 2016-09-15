@@ -1,262 +1,259 @@
 ## PCF Devを用いたローカルCloud Foundry環境
 
-**v0.16.0からPCF Devのインストール方法が変わりました。本ドキュメントをアップデートするまで、[公式ドキュメント](https://docs.pivotal.io/pcf-dev/)を参照してください。**
+**[公式ドキュメント](https://docs.pivotal.io/pcf-dev/)も参照してください。**
 
-[PCF Dev](https://docs.pivotal.io/pcf-dev/index.html)を使うとVagrantを使って開発用にローカルで簡単にCloud Foundry環境を構築できます。
+Cloud FoundryはオープンソースなPaaSプラットフォームであり、ローカルにもPaaS環境を構築することができます。
 
-Pivotal Cloud Foundryが提供しているサービス(MySQL、Redis、RabbitMQ)も初めから組み込まれているため、ローカルでCloud Foundryを試したい場合に最適です。
-(Pivotal Cloud FoundryやOSSのCloud Foundryとの違いは[こちら](https://docs.pivotal.io/pcf-dev/index.html)の「Comparing PCF Dev to Pivotal CF」を参照してください)
 
-### PCF Devを使うために必要な環境
+[PCF Dev](https://docs.pivotal.io/pcf-dev/index.html)は開発用にローカル環境で簡単にCloud Foundryを試すためのVM環境です。[Pivotal Cloud Foundry](https://pivotal.io/jp/platform)が提供しているサービス(MySQL、Redis、RabbitMQ)も初めから組み込まれていて、Virtual Boxだけで簡単にローカル開発環境を用意できます。(Pivotal Cloud FoundryやOSSのCloud Foundryとの違いは[こちら](https://docs.pivotal.io/pcf-dev/index.html)を参照してください)
+v.0.15まではVagrantが必要でしたが、v.0.16からはVirtual BoxのみでOKです。
 
-* [Vagrant](https://www.vagrantup.com/) 1.8以上
-* [VirtualBox](https://www.virtualbox.org/) 5.0以上
-* メモリの空き容量が4GB以上あるPC(8GB以上のPCを使用すること推奨します)
+試したのは[v0.17.0](https://network.pivotal.io/products/pcfdev#/releases/1946)です。
+また、VagrantとVirtualBoxのバージョンは以下の通りです。
 
-### セットアップ方法
+``` console
+$ vagrant --version
+Vagrant 1.8.1
+```
 
-PCF Devは[Pivotal Network](https://network.pivotal.io/products/pcfdev)からダウンロードできます。執筆時点での最新版は[v0.13.0](https://network.pivotal.io/products/pcfdev#/releases/1620)(Open Beta版)です。
+## セットアップ方法
 
-<img width="1102" alt="スクリーンショット 0028-04-05 7.33.45.png" src="https://qiita-image-store.s3.amazonaws.com/0/1852/d520bb99-6266-47ec-9cef-1f6671650811.png">
+PCF Devは[Pivotal Network](https://network.pivotal.io/products/pcfdev)からダウンロードできます。
+
+![image](https://qiita-image-store.s3.amazonaws.com/0/1852/98e1bcf4-995b-96e4-a60b-737ec594a65c.png)
+
 
 ダウンロードするにはPivotal Networkにログインする必要があります。[こちら](https://network.pivotal.io/registrations/new)からアカウントを作成してください。
 
 ![image](https://qiita-image-store.s3.amazonaws.com/0/1852/9a96d83c-8b7a-b0ce-b830-f9bfa03d141e.png)
 
-ダウンロードした`pcfdev-v0.13.0.zip`を展開してください。
+ダウンロードした`pcfdev-v0.17.0+PCF1.7.0-osx.zip`を展開してください(以下はOS Xの例)。
 
 ``` bash
-$ unzip pcfdev-v0.13.0.zip
-$ cd pcfdev-v0.13.0
-$ ls -l
-total 64
--rw-r--r--@ 1 makit  720748206  4466  3 30 12:26 Vagrantfile
--rwxr-xr-x@ 1 makit  720748206   129  4  1 00:52 destroy-osx
--rw-r--r--@ 1 makit  720748206   122  4  1 00:52 destroy-windows.ps1
--rwxr-xr-x  1 makit  720748206  2237  4  2 02:00 start-osx
--rw-r--r--@ 1 makit  720748206  2651  4  1 01:26 start-windows.ps1
--rwxr-xr-x@ 1 makit  720748206   123  4  1 00:52 stop-osx
--rw-r--r--@ 1 makit  720748206   116  4  1 00:52 stop-windows.ps1
+$ unzip pcfdev-v0.17.0+PCF1.7.0-osx.zip 
+Archive:  pcfdev-v0.17.0+PCF1.7.0-osx.zip
+  inflating: pcfdev-v0.17.0+PCF1.7.0-osx 
 ```
 
-`Vagrantfile`と起動、停止、破棄のためのスクリプトがOS X用、Windows用に用意されています。
+`pcfdev-v0.17.0+PCF1.7.0-osx `はPCF DevをインストールするためのCloud Foundryのプラグインです。
 
-スクリプトを使って`./start-osx`で起動できますが、ここではスクリプトを使わない方法を紹介します。スクリプトを使う方法は[マニュアル](https://docs.pivotal.io/pcf-dev/install-osx.html)を参照してください。
+[CF CLI](https://github.com/cloudfoundry/cli/releases)を使ってプラグインをインストール(`cf install-plugin`)したのち、プラグインのコマンド(`cf dev start`)を使ってPCF Devをインストールします。
 
-設定可能な環境変数は以下の通りです。
+途中でAPIトークンの入力を求められます。トークンはPivotal Networkの[プロフィール画面](https://network.pivotal.io/users/dashboard/edit-profile)の一番下に表示されています。
 
-* `PCFDEV_IP` ... PCF DevのIPアドレス(デフォルトは`192.168.11.11`)
-* `PCFDEV_DOMAIN` ... PCF Devのドメイン名(デフォルトのIPアドレスを使う場合は`local.pcfdev.io`、それ以外の場合は`$PCFDEV_IP.xip.io`)
-* `VM_CORES` ... VMに割り当てるCPU数(デフォルトはホストマシンの論理コア数)
-* `VM_MEMORY` ... VMに割り当てるメモリ(MB)(デフォルトはホストマシンの1/4のメモリ)
-
-`192.168.11.*`をすでに使っている場合は、`PCFDEV_IP`を設定しないと、
 
 ``` console
-The specified host network collides with a non-hostonly network!
-This will cause your specified IP to be inaccessible. Please change
-the IP or name of your host only network so that it no longer matches that of
-a bridged or non-hostonly network.
+$ cf install-plugin ./pcfdev-v0.17.0+PCF1.7.0-osx
+
+**注意: プラグインは必ずしも信頼できない作成者によって書かれたバイナリーです。プラグインのインストールと使用は自らの責任で行ってください。**
+
+プラグイン ./pcfdev-v0.17.0+PCF1.7.0-osx をインストールしますか? (y または n)> y
+
+プラグイン ./pcfdev-v0.17.0+PCF1.7.0-osx をインストールしています...
+OK
+プラグイン pcfdev v0.0.0 は正常にインストールされました。
+$ cf dev start
+Please retrieve your Pivotal Network API from:
+https://network.pivotal.io/users/dashboard/edit-profile
+
+API token> (APIトークンの入力)
+BETA SOFTWARE END USER LICENSE AGREEMENT
+(略)
+Last Updated: April 14th, 2014
+
+Accept (yes/no):> yes
+Downloading VM...
+Progress: |====================>| 100%
+VM downloaded
+Allocating 4096 MB out of 16384 MB total system memory (5500 MB free).
+Importing VM...
+Starting VM...
+Provisioning VM...
+Waiting for services to start...
+9 out of 50 running
+50 out of 50 running
+ _______  _______  _______    ______   _______  __   __
+|       ||       ||       |  |      | |       ||  | |  |
+|    _  ||       ||    ___|  |  _    ||    ___||  |_|  |
+|   |_| ||       ||   |___   | | |   ||   |___ |       |
+|    ___||      _||    ___|  | |_|   ||    ___||       |
+|   |    |     |_ |   |      |       ||   |___  |     |
+|___|    |_______||___|      |______| |_______|  |___|
+is now running.
+To begin using PCF Dev, please run:
+	cf login -a https://api.local.pcfdev.io --skip-ssl-validation
+Admin user => Email: admin / Password: admin
+Regular user => Email: user / Password: pass
 ```
 
-と言われます。この場合は、以下の環境変数を設定してください。
-
-``` console
-$ export PCFDEV_IP=192.168.33.10
-```
-
-この設定を行った場合は、この後の`local.pcfdev.io`を`$PCFDEV_IP.xip.io`に読み替えてください。
-
-以上の設定の後、`vagrant up`します。
-
-``` console
-$ vagrant up --provider virtualbox
-Bringing machine 'default' up with 'virtualbox' provider...
-==> default: Importing base box 'pcfdev/pcfdev'...
-==> default: Matching MAC address for NAT networking...
-==> default: Checking if box 'pcfdev/pcfdev' is up to date...
-==> default: Setting the name of the VM: pcfdev-v0130_default_1459809996734_18657
-==> default: Clearing any previously set network interfaces...
-==> default: Preparing network interfaces based on configuration...
-    default: Adapter 1: nat
-    default: Adapter 2: hostonly
-==> default: Forwarding ports...
-    default: 22 (guest) => 2222 (host) (adapter 1)
-==> default: Running 'pre-boot' VM customizations...
-==> default: Booting VM...
-==> default: Waiting for machine to boot. This may take a few minutes...
-    default: SSH address: 127.0.0.1:2222
-    default: SSH username: vagrant
-    default: SSH auth method: private key
-    default: 
-    default: Vagrant insecure key detected. Vagrant will automatically replace
-    default: this with a newly generated keypair for better security.
-    default: 
-    default: Inserting generated public key within guest...
-    default: Removing insecure key from the guest if it's present...
-    default: Key inserted! Disconnecting and reconnecting using new SSH key...
-==> default: Machine booted and ready!
-==> default: Checking for guest additions in VM...
-==> default: Configuring and enabling network interfaces...
-==> default: Running provisioner: shell...
-    default: Running: inline script
-==> default: stdin: is not a tty
-==> default: Waiting for services to start...
-==> default: 0 out of 48 running
-==> default: 0 out of 48 running
-==> default: 0 out of 48 running
-==> default: 0 out of 48 running
-==> default: 0 out of 48 running
-==> default: 4 out of 48 running
-==> default: 28 out of 48 running
-==> default: 45 out of 48 running
-==> default: 45 out of 48 running
-==> default: 46 out of 48 running
-==> default: 46 out of 48 running
-==> default: 48 out of 48 running
-==> default: PCF Dev is now running.
-==> default: To begin using PCF Dev, please run:
-==> default: 	cf login -a api.local.pcfdev.io --skip-ssl-validation
-==> default: Email: admin
-==> default: Password: admin
-```
-
+立ち上がりました！
 
 ## アプリケーションをデプロイ
 
 まずはログインします。ユーザー名、パスワードともに`admin`です。
 
 ``` bash
-$ cf login -a api.local.pcfdev.io -u admin -p admin --skip-ssl-validation
-API endpoint: api.local.pcfdev.io
-Authenticating...
+$ cf login -a https://api.local.pcfdev.io --skip-ssl-validation
+API エンドポイント: https://api.local.pcfdev.io
+
+Email> admin
+
+Password> 
+認証中です...
 OK
 
-Targeted org pcfdev-org
+組織を選択します (または Enter キーを押してスキップします):
+1. pcfdev-org
+2. system
 
-Targeted space pcfdev-space
+Org> 1
+組織 pcfdev-org をターゲットにしました
+
+スペース pcfdev-space をターゲットにしました
 
 
-                   
-API endpoint:   https://api.local.pcfdev.io (API version: 2.51.0)   
-User:           admin   
-Org:            pcfdev-org   
-Space:          pcfdev-space 
+                         
+API エンドポイント:   https://api.local.pcfdev.io (API バージョン: 2.54.0)   
+ユーザー:             admin   
+組織:                 pcfdev-org   
+スペース:             pcfdev-space 
 ```
 
-`cf login`してしまえば、あとはこれまでのワークショップのコンテンツをそのまま試せます。
-「[簡単なアプリケーションをデプロイ](deploy-application.md)」の内容を試してみましょう。
+[前に書いた入門記事](https://blog.ik.am/entries/359)と同じく`hello-pws`をpushします。
 
-
-``` console
-$ cf push
-Using manifest file /Users/makit/git/hello-cf/manifest.yml
-
-Creating app hello-tmaki in org pcfdev-org / space pcfdev-space as admin...
+``` bash
+$ git clone https://github.com/making/hello-pws
+$ cd hello-pws
+$ mvn clean package
+$ cf push hello-pws -p target/hello-pws.jar -m 256m -b java_buildpack
+admin としてアプリ hello-pws を組織 pcfdev-org / スペース pcfdev-space 内に作成しています...
 OK
 
-Creating route hello-tmaki.local.pcfdev.io...
+経路 hello-pws.local.pcfdev.io を作成しています...
 OK
 
-Binding hello-tmaki.local.pcfdev.io to hello-tmaki...
+hello-pws.local.pcfdev.io を hello-pws にバインドしています...
 OK
 
-Uploading hello-tmaki...
-Uploading app files from: /Users/makit/git/hello-cf/target/hello-cf-0.0.1-SNAPSHOT.jar
-Uploading 492.8K, 89 files
+hello-pws をアップロードしています...
+次のパスからアプリ・ファイルをアップロードしています: /var/folders/15/fww24j3d7pg9sz196cxv_6xm4nvlh8/T/unzipped-app203143786
+485.1K、89 個のファイルをアップロードしています
 Done uploading               
 OK
 
-Starting app hello-tmaki in org pcfdev-org / space pcfdev-space as admin...
+
+admin として組織 pcfdev-org / スペース pcfdev-space 内のアプリ hello-pws を開始しています...
+Downloading java_buildpack...
+Downloaded java_buildpack
 Creating container
 Successfully created container
 Downloading app package...
-Downloaded app package (11.8M)
+Downloaded app package (11.7M)
 Staging...
------> Java Buildpack Version: v3.5.1 | https://github.com/cloudfoundry/java-buildpack#3abc3db
------> Downloading Open Jdk JRE 1.8.0_65 from https://download.run.pivotal.io/openjdk/trusty/x86_64/openjdk-1.8.0_65.tar.gz (1m 25s)
-       Expanding Open Jdk JRE to .java-buildpack/open_jdk_jre (0.9s)
------> Downloading Open JDK Like Memory Calculator 2.0.1_RELEASE from https://download.run.pivotal.io/memory-calculator/trusty/x86_64/memory-calculator-2.0.1_RELEASE.tar.gz (1.7s)
-       Memory Settings: -XX:MaxMetaspaceSize=64M -XX:MetaspaceSize=64M -Xms382293K -Xss995K -Xmx382293K
------> Downloading Spring Auto Reconfiguration 1.10.0_RELEASE from https://download.run.pivotal.io/auto-reconfiguration/auto-reconfiguration-1.10.0_RELEASE.jar (3.2s)
+-----> Java Buildpack Version: v3.6 (offline) | https://github.com/cloudfoundry/java-buildpack.git#5194155
+-----> Downloading Open Jdk JRE 1.8.0_71 from https://download.run.pivotal.io/openjdk/trusty/x86_64/openjdk-1.8.0_71.tar.gz (found in cache)
+       Expanding Open Jdk JRE to .java-buildpack/open_jdk_jre (2.7s)
+-----> Downloading Open JDK Like Memory Calculator 2.0.1_RELEASE from https://download.run.pivotal.io/memory-calculator/trusty/x86_64/memory-calculator-2.0.1_RELEASE.tar.gz (found in cache)
+       Memory Settings: -Xmx160M -XX:MaxMetaspaceSize=64M -Xss853K -Xms160M -XX:MetaspaceSize=64M
+-----> Downloading Spring Auto Reconfiguration 1.10.0_RELEASE from https://download.run.pivotal.io/auto-reconfiguration/auto-reconfiguration-1.10.0_RELEASE.jar (found in cache)
 Exit status 0
 Staging complete
 Uploading droplet, build artifacts cache...
 Uploading build artifacts cache...
 Uploading droplet...
-Uploaded build artifacts cache (44.7M)
+Uploaded build artifacts cache (107B)
 Uploaded droplet (56.7M)
 Uploading complete
 
-0 of 3 instances running, 3 starting
-0 of 3 instances running, 3 starting
-0 of 3 instances running, 3 starting
-0 of 3 instances running, 3 starting
-3 of 3 instances running
+1 個の中の 0 個のインスタンスが実行中です, 1 個が開始中です
+1 個の中の 0 個のインスタンスが実行中です, 1 個が開始中です
+1 個の中の 1 個のインスタンスが実行中です
 
-App started
+アプリが開始されました
 
 
 OK
 
-App hello-tmaki was started using this command `CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_jre/bin/java-buildpack-memory-calculator-2.0.1_RELEASE -memorySizes=metaspace:64m.. -memoryWeights=heap:75,metaspace:10,native:10,stack:5 -memoryInitials=heap:100%,metaspace:100% -totMemory=$MEMORY_LIMIT) && JAVA_OPTS="-Djava.io.tmpdir=$TMPDIR -XX:OnOutOfMemoryError=$PWD/.java-buildpack/open_jdk_jre/bin/killjava.sh $CALCULATED_MEMORY" && SERVER_PORT=$PORT eval exec $PWD/.java-buildpack/open_jdk_jre/bin/java $JAVA_OPTS -cp $PWD/.:$PWD/.java-buildpack/spring_auto_reconfiguration/spring_auto_reconfiguration-1.10.0_RELEASE.jar org.springframework.boot.loader.JarLauncher`
+アプリ hello-pws はこのコマンド `CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_jre/bin/java-buildpack-memory-calculator-2.0.1_RELEASE -memorySizes=metaspace:64m.. -memoryWeights=heap:75,metaspace:10,native:10,stack:5 -memoryInitials=heap:100%,metaspace:100% -totMemory=$MEMORY_LIMIT) && JAVA_OPTS="-Djava.io.tmpdir=$TMPDIR -XX:OnOutOfMemoryError=$PWD/.java-buildpack/open_jdk_jre/bin/killjava.sh $CALCULATED_MEMORY" && SERVER_PORT=$PORT eval exec $PWD/.java-buildpack/open_jdk_jre/bin/java $JAVA_OPTS -cp $PWD/.:$PWD/.java-buildpack/spring_auto_reconfiguration/spring_auto_reconfiguration-1.10.0_RELEASE.jar org.springframework.boot.loader.JarLauncher` を使用して開始されました
 
-Showing health and status for app hello-tmaki in org pcfdev-org / space pcfdev-space as admin...
+admin として組織 pcfdev-org / スペース pcfdev-space 内のアプリ hello-pws の正常性と状況を表示しています...
 OK
 
-requested state: started
-instances: 3/3
-usage: 512M x 3 instances
-urls: hello-tmaki.local.pcfdev.io
-last uploaded: Tue Apr 5 05:20:54 UTC 2016
-stack: cflinuxfs2
-buildpack: https://github.com/cloudfoundry/java-buildpack#v3.5.1
+要求された状態: started
+インスタンス: 1/1
+使用法: 256M x 1 インスタンス
+URL: hello-pws.local.pcfdev.io
+最後アップロード日時: Sun Jul 3 11:43:18 UTC 2016
+スタック: unknown
+ビルドパック: java_buildpack
 
-     state     since                    cpu    memory           disk           details   
-#0   running   2016-04-05 02:23:19 PM   0.0%   327.9M of 512M   136.2M of 1G      
-#1   running   2016-04-05 02:23:19 PM   0.0%   318.7M of 512M   136.2M of 1G      
-#2   running   2016-04-05 02:23:18 PM   0.0%   313.8M of 512M   136.2M of 1G 
+     状態   次の日時から             CPU    メモリー           ディスク            詳細   
+#0   実行   2016-07-03 08:44:01 PM   0.0%   256M の中の 848K   512M の中の 16.4M 
 ```
 
-``` console
-$ for i in `seq 1 10`;do curl http://hello-tmaki.local.pcfdev.io;echo;done
-Hello World! V3 (0)
-Hello World! V3 (2)
-Hello World! V3 (1)
-Hello World! V3 (0)
-Hello World! V3 (2)
-Hello World! V3 (1)
-Hello World! V3 (0)
-Hello World! V3 (2)
-Hello World! V3 (1)
-Hello World! V3 (0)
+デプロイできました。
+
+``` bash
+$ curl hello-pws.local.pcfdev.io
+Hello from 10.0.2.15:60012
 ```
 
-マーケットプレイスにはv0.13.0の段階で
+スケールアウトも[前記事](https://blog.ik.am/entries/359)と同じようにできます。
+
+ローカルでCloud Foundryを色々試したい場合に便利です。
+
+ただし、管理コンソールはありません。
+
+またマーケットプレイスにはv0.17.0の段階で
 
 * MySQL
 * Redis
 * RabbitMQ
 
-が登録されています。これは[Pivotal Services Suite for Pivotal Cloud Foundry](https://network.pivotal.io/products/pcf-services)とほぼ同じものです。(ただし、MySQLのHA対応はありません)
-管理コンソールはありません。
+が登録されています。これは[Pivotal Services Suite for Pivotal Cloud Foundry](https://network.pivotal.io/products/pcf-services)とほぼ同じもので、PCF Devで動いたアプリがPCFでも動くことを目的としてサービスが用意されているようです。
 
 ``` bash
 $ cf marketplace
-Getting services from marketplace in org pcfdev-org / space pcfdev-space as admin...
+admin として組織 pcfdev-org / スペース pcfdev-space 内のマーケットプレイスからサービスを取得しています...
 OK
 
-service      plans        description   
+サービス     プラン       説明   
 p-mysql      512mb, 1gb   MySQL databases on demand   
 p-rabbitmq   standard     RabbitMQ is a robust and scalable high-performance multi-protocol messaging broker.   
 p-redis      shared-vm    Redis service to provide a key-value store   
 
-TIP:  Use 'cf marketplace -s SERVICE' to view descriptions of individual plans of a given service.
+ヒント:  特定のサービスの個々のプランの説明を表示するには、'cf marketplace -s SERVICE' を使用します。
 ```
 
-「[バックエンドサービスの利用](backend-service.md)」の内容をPCF Devで試すには、以下の`rediscloud`の代わりに`p-redis`を使ってください。
-サービスインスタンス名は同じにすればmanifestファイルをそのまま利用できます。
+### 管理コンソール(Apps Manager)にアクセスする
+
+PCF Dev 0.17からはPivotal Cloud Foundryの売りの一つである管理コンソール(Apps Manager)も付いてきます。
+
+[https://console.local.pcfdev.io/2](https://console.local.pcfdev.io/2)にアクセスすれば、デプロイされているアプリケーションの状態を確認できます。
+
+![image](https://qiita-image-store.s3.amazonaws.com/0/1852/57e6ad54-2130-c777-2cd2-6dcd89b0821a.png)
+
+![image](https://qiita-image-store.s3.amazonaws.com/0/1852/82f33ec8-8318-6eee-08a4-3faf4dfd0f59.png)
+
+![image](https://qiita-image-store.s3.amazonaws.com/0/1852/80391ccc-f1c7-4f45-c9e7-c486f3bd3abe.png)
+
+![image](https://qiita-image-store.s3.amazonaws.com/0/1852/f0dc76d1-00b7-5494-4ad5-caac15abed85.png)
+
+
+
+ちなみにApps Manager自体、このPCF Devのランタイムにデプロイされています。`system` Organizationにデプロイされているので`cf target`でOrganizationを切り替えれるとApps Managerの状態を確認できます。
 
 ``` console
-$ cf create-service p-redis shared-vm myredis
+$ cf target -o system
+                         
+API エンドポイント:   https://api.local.pcfdev.io (API バージョン: 2.54.0)   
+ユーザー:             admin   
+組織:                 system   
+スペース:             system   
+$ cf a
+admin として組織 system / スペース system 内のアプリを取得しています...
+OK
+
+名前           要求された状態   インスタンス   メモリー   ディスク   URL   
+apps-manager   started          6/6            64M        512M       apps-manager.local.pcfdev.io, console.local.pcfdev.io
 ```
