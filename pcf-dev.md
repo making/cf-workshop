@@ -10,6 +10,8 @@ v.0.15まではVagrantが必要でしたが、v.0.16からはVirtual Boxのみ�
 
 試したのは[v0.17.0](https://network.pivotal.io/products/pcfdev#/releases/1946)です。
 
+**PCF Dev (v0.18.0以下)でSpring Boot 1.4を使う場合は**[こちら](http://bit.ly/pcfdev-boot14)**。**
+
 ## セットアップ方法
 
 PCF Devは[Pivotal Network](https://network.pivotal.io/products/pcfdev)からダウンロードできます。
