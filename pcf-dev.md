@@ -251,3 +251,23 @@ OK
 名前           要求された状態   インスタンス   メモリー   ディスク   URL   
 apps-manager   started          6/6            64M        512M       apps-manager.local.pcfdev.io, console.local.pcfdev.io
 ```
+
+## PCF Dev (v0.18.0以下)でSpring Boot 1.4を使う場合
+
+Spring Boot 1.4からはjarのレイアウトが変わり、Cloud Foundryで動かすには[Java Buildpack 3.7以上が必要](https://github.com/pivotal-cf/pcfdev/issues/130)になります。Cloud Foundry側で用意されているBuildpackのバージョンは`cf buildpacks`で確認できますが、PCD Dev v0.18.0以下では3.6が用意されています。
+
+この場合、Spring Boot 1.4のアプリをpushする際に3.7以上のbuildpackを`-b`で指定してください。
+
+``` console
+$ cf push ... -b https://github.com/cloudfoundry/java-buildpack.git#v3.9
+```
+
+`manifest.yml`を使う場合は次のようにbuildpackを指定してください。
+
+``` yaml
+---
+applications:
+  - name: ...
+    # ...
+    buildpack: https://github.com/cloudfoundry/java-buildpack#v3.9
+```
