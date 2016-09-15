@@ -18,7 +18,7 @@ To be continued
 ## Backlog
 
 - [ ] User Provided Serviceの利用
-- [ ] Service Brokerの作成
+- [x] Service Brokerの作成 [別資料](https://github.com/Pivotal-Japan/service-broker-workshop)
 - [ ] Organization / Space / User / Roleの作成
 - [ ] Auto Scaleの利用
 - [x] PCF Devを使用したローカルCloud Foundry環境
