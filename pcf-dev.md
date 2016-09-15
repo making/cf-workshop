@@ -9,12 +9,6 @@ Cloud FoundryはオープンソースなPaaSプラットフォームであり、
 v.0.15まではVagrantが必要でしたが、v.0.16からはVirtual BoxのみでOKです。
 
 試したのは[v0.17.0](https://network.pivotal.io/products/pcfdev#/releases/1946)です。
-また、VagrantとVirtualBoxのバージョンは以下の通りです。
-
-``` console
-$ vagrant --version
-Vagrant 1.8.1
-```
 
 ## セットアップ方法
 
