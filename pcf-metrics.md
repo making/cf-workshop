@@ -1,4 +1,4 @@
-### PCF Metricsによるアプリケーションのモニタリング
+## PCF Metricsによるアプリケーションのモニタリング
 
 PWSの独自機能として、[PCF Metrics](https://metrics.run.pivotal.io)というアプリケーションのメトリクスやログを蓄積して視覚化する仕組みが用意されています。2016年8月時点でBETA版として無償で利用可能です。
 
