@@ -8,11 +8,11 @@
 
 1. [事前準備 / Prerequisite](prerequisite.md)
 1. 簡単なアプリケーションをデプロイ / Deploy hello world [[Java](deploy-application.md)] [[Python](deploy-application_python.md)]
-1. [バックエンドサービスの利用 / Use backend service](backend-service.md)
+1. バックエンドサービスの利用 / Use backend service [[Java](backend-service.md)]
 1. [スケールアウト / Scale out application](scale-out.md)
 1. [PCF Metricsによるアプリケーションのモニタリング / Application monitoring with PCF Metrics](pcf-metrics.md) 
 1. [ログの転送 / Forward logging](logging.md)
-1. [Blue-Greenデプロイ / Blue-Green deployment](blue-green-deployment.md)
+1. Blue-Greenデプロイ / Blue-Green deployment [[Java](blue-green-deployment.md)]
 1. [PCF Devを用いたローカルCloud Foundry環境](pcf-dev.md)
 
 To be continued
