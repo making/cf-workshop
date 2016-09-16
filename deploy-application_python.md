@@ -50,7 +50,7 @@ Hello World!が表示されれば成功です。
 
 ### アプリケーションをCloud FoundryにPush
 
-ビルドしたアプリケーションをCloud FoundryにPushしましょう。
+作成したアプリケーションをCloud FoundryにPushしましょう。
 
 まずはCloud Foundry上で使用するPythonのバージョンを`runtime.txt`に記述します。今回はPython 3.5.2を使用します。
 
@@ -123,7 +123,7 @@ Binding hello-tmaki.cfapps.io to hello-tmaki...
 OK
 
 Uploading hello-tmaki...
-Uploading app files from: /Users/makit/cfws/python
+Uploading app files from: /Users/makit/cfws/python/hello-cf
 Uploading 694B, 4 files
 Done uploading               
 OK
@@ -405,7 +405,7 @@ Binding hello-alphameric-laity.cfapps.io to hello...
 OK
 
 Uploading hello...
-Uploading app files from: /Users/makit/cfws/python
+Uploading app files from: /Users/makit/cfws/python/hello-cf
 Uploading 694B, 4 files
 Done uploading               
 OK
@@ -498,7 +498,7 @@ applications:
 
 ``` console
 $ cf push
-Using manifest file /Users/makit/cfws/python/manifest.yml
+Using manifest file /Users/makit/cfws/python/hello-cf/manifest.yml
 (以下、略)
 ```
 
