@@ -1,6 +1,6 @@
 ## 簡単なアプリケーションをデプロイ
 
-Spring Bootを使ってとても簡単なWebアプリケーションを作成 & デプロイしましょう。
+[Spring Boot](http://projects.spring.io/spring-boot/)を使ってとても簡単なWebアプリケーションを作成 & デプロイしましょう。
 
 ### プロジェクトの作成
 
