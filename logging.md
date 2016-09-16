@@ -42,8 +42,8 @@ EmailとPasswordを入力して、「Start Logging - Free Plan」をクリック
 `cf create-user-provided-service <Service Instance Name> -l syslog://<URL:PORT>`を実行し、ログ転送サービスインスタンスを作成します。
 
 ``` console
-$ cf create-user-provided-service papertrail -l syslog://logs4.papertrailapp.com:37190
-Creating user provided service papertrail in org tmaki / space development as ****@gmail.com...
+$ cf create-user-provided-service hello-log -l syslog://logs4.papertrailapp.com:37190
+Creating user provided service hello-log in org tmaki / space development as ****@gmail.com...
 OK
 ```
 
@@ -56,13 +56,13 @@ OK
 
 name         service         plan   bound apps          last operation   
 myredis      rediscloud      30mb   hello-redis-tmaki   create succeeded   
-papertrail   user-provided 
+hello-log    user-provided 
 ```
 
 Redisの場合と同様にログ転送サービスインスタンスも`hello-redis-<your name>`にバインドしてrestartしてください。
 
 ```
-$ cf bind-service hello-redis-tmaki papertrail
+$ cf bind-service hello-redis-tmaki hello-log
 $ cf restart hello-redis-tmaki
 ```
 
