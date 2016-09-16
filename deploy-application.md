@@ -396,7 +396,7 @@ buildpack: java_buildpack
 ``` yaml
 ---
 applications:
-  - name: hello-tmaki
+  - name: hello
     path: target/hello-cf-0.0.1-SNAPSHOT.jar
     buildpack: java_buildpack
     random-route: true
