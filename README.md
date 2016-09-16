@@ -7,7 +7,7 @@
 ## Contents
 
 1. [事前準備 / Prerequisite](prerequisite.md)
-1. [簡単なアプリケーションをデプロイ / Deploy hello world](deploy-application.md)
+1. 簡単なアプリケーションをデプロイ / Deploy hello world [[Java](deploy-application.md)] [[Python](deploy-application_python.md)]
 1. [バックエンドサービスの利用 / Use backend service](backend-service.md)
 1. [スケールアウト / Scale out application](scale-out.md)
 1. [PCF Metricsによるアプリケーションのモニタリング / Application monitoring with PCF Metrics](pcf-metrics.md) 
