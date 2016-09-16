@@ -1,7 +1,7 @@
 # cf-workshop
 
 * [Introduction (今すぐ始めるCloud Foundry)](http://www.slideshare.net/makingx/cloud-foundry-hackt-hacktk) 🆕
-* [Introduction (Introduction to Cloud Foundry)](http://www.slideshare.net/makingx/introduction-to-cloud-foundry-jjug)
+* <s>[Introduction (Introduction to Cloud Foundry)](http://www.slideshare.net/makingx/introduction-to-cloud-foundry-jjug)</s>
 
 
 ## Contents
