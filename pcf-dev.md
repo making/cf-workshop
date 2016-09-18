@@ -10,7 +10,7 @@ v.0.15まではVagrantが必要でしたが、v.0.16からはVirtual Boxのみ�
 
 試したのは[v0.17.0](https://network.pivotal.io/products/pcfdev#/releases/1946)です。
 
-**PCF Dev (v0.18.0以下)でSpring Boot 1.4を使う場合は**[こちら](http://bit.ly/pcfdev-boot14)**。**
+**PCF Dev (v0.19.0以下)でSpring Boot 1.4を使う場合は**[こちら](http://bit.ly/pcfdev-boot14)**。**
 
 ## セットアップ方法
 
@@ -254,7 +254,7 @@ OK
 apps-manager   started          6/6            64M        512M       apps-manager.local.pcfdev.io, console.local.pcfdev.io
 ```
 
-## PCF Dev (v0.18.0以下)でSpring Boot 1.4を使う場合
+## PCF Dev (v0.19.0以下)でSpring Boot 1.4を使う場合
 
 Spring Boot 1.4からはjarのレイアウトが変わり、Cloud Foundryで動かすには[Java Buildpack 3.7以上が必要](https://github.com/pivotal-cf/pcfdev/issues/130)になります。Cloud Foundry側で用意されているBuildpackのバージョンは`cf buildpacks`で確認できますが、PCD Dev v0.18.0以下では3.6が用意されています。
 
