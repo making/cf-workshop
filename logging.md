@@ -18,8 +18,8 @@ Cloud Foundryのアプリケーションログの保存は一時的ですが、�
 
 本チュートリアルでは次の2つのサービスの使い方について見ていきます。
 
-* Logit.io
-* Papertrail
+* [Logit.io](#logitioの場合)
+* [Papertrail](#papertrailの場合)
 
 どちらか好きな方を選択してチュートリアルを進めてください。
 
