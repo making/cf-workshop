@@ -40,7 +40,7 @@ GithubかGoogleアカウントでログインしてください。
 
 ![image](https://qiita-image-store.s3.amazonaws.com/0/1852/0915e3b9-ddf7-1a88-7a43-3dfc969a3a58.png)
 
-"Is this a company account?"に「No」、"Daily Log Size"に「0.5」、"Retention"に「3」を入力して、"Continue"をクリックしてください。
+"Is this a company account?"に「No」、"Daily Log Size"に「0.5」、"Retention"に「7」を入力して、"Continue"をクリックしてください。
 
 ![image](https://qiita-image-store.s3.amazonaws.com/0/1852/e485470f-3041-701e-6358-632c20a1754e.png)
 
