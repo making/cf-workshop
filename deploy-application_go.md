@@ -62,64 +62,14 @@ Hello World!が表示されれば成功です。
 
 作成したアプリケーションをCloud FoundryにPushしましょう。
 
-まずはCloud Foundry上で使用するPythonのバージョンを`runtime.txt`に記述します。今回はPython 3.5.2を使用します。
-
-```
-python-3.5.2
-```
-
-> **ノート: 指定できるPythonのバージョン**
-> 
-> 指定できるPythonのバージョンは使用するBuildpackによります。
-> 
-> ``` console
-> $ cf buildpacks
-> Getting buildpacks...
-> 
-> buildpack                    position   enabled   locked   filename
-> staticfile_buildpack         1          true      true     staticfile_buildpack-cached-v1.3.10.zip
-> java_buildpack               2          true      true     java-buildpack-offline-v3.9.zip
-> ruby_buildpack               3          true      true     ruby_buildpack-cached-v1.6.24.zip
-> nodejs_buildpack             4          true      true     nodejs_buildpack-cached-v1.5.19.zip
-> go_buildpack                 5          true      true     go_buildpack-cached-v1.7.12.zip
-> python_buildpack             6          true      true     python_buildpack-cached-v1.5.9.zip <-----
-> php_buildpack                7          true      true     php_buildpack-cached-v4.3.19.zip
-> liberty_buildpack            8          true      true     liberty_buildpack.zip
-> binary_buildpack             9          true      true     binary_buildpack-cached-v1.0.3.zip
-> dotnet_core_buildpack_beta   10         true      true     dotnet-core_buildpack-cached-v1.0.0.zip
-> ```
-> 
-> 上の例ではPythonのBuildpackバージョンは1.5.9です。BuildpackのリリースページにそのBuildpackバージョンで利用出来るPythonのバージョンが列挙されています。
-> 
-> https://github.com/cloudfoundry/python-buildpack/releases/tag/v1.5.9
-
-次に、`Procfile`に実行するコマンドを記述します(Heroku互換です)。
-
-```
-web: python hello.py
-```
-
-フォルダ構成は次にようになっているでしょうか。
+`cf`コマンドを使ってCloud Foundryにアプリケーションをデプロイできます。
 
 ``` console
-$ ls -la
-total 32
-drwxr-xr-x  6 makit  720748206  204  9 16 11:09 .
-drwxr-xr-x  6 makit  720748206  204  9 16 11:00 ..
--rw-r--r--  1 makit  720748206   20  9 16 11:04 Procfile
--rw-r--r--  1 makit  720748206  215  9 16 11:09 hello.py
--rw-r--r--  1 makit  720748206    6  9 16 11:04 requirements.txt
--rw-r--r--  1 makit  720748206   13  9 16 11:07 runtime.txt
-```
-
-この状態で`cf`コマンドを使ってCloud Foundryにアプリケーションをデプロイできます。
-
-``` console
-$ cf push hello-<your name> -m 32m
+$ cf push hello-<your name> -m 8m
 ```
 
 `<your name>`は自分の名前などを置換して、一意にしてください。以下では`<your name>`を`tmaki`とします。適宜自分の名前に読み替えてください。
-`-m`で使用するメモリ量を指定します。Pivotal Web Servicesではデフォルトで1GBが使用されますが、Pythonアプリではそんなに必要ないのでここでは32MBを指定しています。
+`-m`で使用するメモリ量を指定します。Pivotal Web Servicesではデフォルトで1GBが使用されますが、Goアプリではそんなに必要ないのでここでは8MBを指定しています。
 
 ``` console
 $ cf push hello-tmaki -m 8m
