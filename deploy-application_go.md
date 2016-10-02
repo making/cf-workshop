@@ -12,6 +12,8 @@ $ mkdir -p $GOPATH/src/github.com/<your github account>/hello-cf
 $ cd $GOPATH/src/github.com/<your github account>/hello-cf
 ```
 
+Glideを使ってプロジェクトを初期化します。
+
 ``` bash
 $ glide init
 [INFO] Generating a YAML configuration file and guessing the dependencies
