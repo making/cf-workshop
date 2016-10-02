@@ -1,4 +1,4 @@
-## 簡単なアプリケーションをデプロイ
+## 簡単なアプリケーションをデプロイ (Java編)
 
 [Spring Boot](http://projects.spring.io/spring-boot/)を使ってとても簡単なWebアプリケーションを作成 & デプロイしましょう。
 
