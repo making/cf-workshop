@@ -1,4 +1,4 @@
-## スケールアウト
+## スケールアウト (Java編)
 
 Cloud Foundryではスケールアウトも簡単です。`cf scale -i <Instance Count> <App>`で指定したインスタンス数にスケールアウトできます。
 
