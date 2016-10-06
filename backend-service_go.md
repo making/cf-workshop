@@ -21,14 +21,14 @@ $ glide init
 [INFO] Attempting to import from other package managers (use --skip-import to skip)
 ```
 
-Redisのライブラリである[`github.com/garyburd/redigo/redis`](https://github.com/garyburd/redigo)を`glide get`で追加します。
+Redisのライブラリである[`gopkg.in/redis.v4`](https://github.com/go-redis/redis)を`glide get`で追加します。
 
 ``` console
-$ glide get github.com/garyburd/redigo/redis
+$ glide get gopkg.in/redis.v4
 [INFO] Preparing to install 1 package.
-[INFO] Importing github.com/garyburd/redigo
+[INFO] Importing gopkg.in/redis.v4
 [INFO] Downloading dependencies. Please wait...
-[INFO] Fetching updates for github.com/garyburd/redigo.
+[INFO] Fetching updates for gopkg.in/redis.v4.
 [INFO] Resolving imports
 [INFO] Downloading dependencies. Please wait...
 ```
@@ -40,27 +40,22 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"time"
 
-	"github.com/garyburd/redigo/redis"
+	"gopkg.in/redis.v4"
 )
 
 func main() {
-
-	c, err := redis.DialURL(redisURL())
-	if err != nil {
-		log.Fatal("Error! => ", err)
-	}
+	c := redis.NewClient(redisOptions())
 	defer c.Close()
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		s, e := redis.String(c.Do("GET", "now"))
+		s, e := c.Get("now").Result()
 		if e != nil {
 			now := time.Now().Format("2006-01-02T15:04:05Z0700")
-			c.Do("SET", "now", now)
+			c.Set("now", now, 0)
 			s = now
 		}
 		fmt.Fprint(w, "Hello. It's "+s+" now")
@@ -68,8 +63,12 @@ func main() {
 	http.ListenAndServe(":"+os.Getenv("PORT"), nil)
 }
 
-func redisURL() string {
-	return "redis://localhost:6379" // Should be changed later
+func redisOptions() *redis.Options {
+	return &redis.Options{
+		Addr:     "localhost:6379",
+		Password: "", // no password set
+		DB:       0,  // use default DB
+	}
 }
 ```
 
@@ -157,13 +156,13 @@ $ glide get github.com/bitly/go-simplejson
 [INFO] Preparing to install 1 package.
 [INFO] Importing github.com/bitly/go-simplejson
 [INFO] Downloading dependencies. Please wait...
-[INFO] Fetching updates for github.com/garyburd/redigo.
 [INFO] Fetching updates for github.com/bitly/go-simplejson.
+[INFO] Fetching updates for gopkg.in/redis.v4.
 [INFO] Resolving imports
 [INFO] Downloading dependencies. Please wait...
 ```
 
-次のように`go-simplejson`を使って`redisURL()`関数を変更します。
+次のように`go-simplejson`を使って`redisOptions()`関数を変更します。
 
 ``` go
 package main
@@ -176,22 +175,19 @@ import (
 	"time"
 
 	"github.com/bitly/go-simplejson"
-	"github.com/garyburd/redigo/redis"
+
+	"gopkg.in/redis.v4"
 )
 
 func main() {
-
-	c, err := redis.DialURL(redisURL())
-	if err != nil {
-		log.Fatal("Error! => ", err)
-	}
+	c := redis.NewClient(redisOptions())
 	defer c.Close()
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		s, e := redis.String(c.Do("GET", "now"))
+		s, e := c.Get("now").Result()
 		if e != nil {
 			now := time.Now().Format("2006-01-02T15:04:05Z0700")
-			c.Do("SET", "now", now)
+			c.Set("now", now, 0)
 			s = now
 		}
 		fmt.Fprint(w, "Hello. It's "+s+" now")
@@ -199,7 +195,7 @@ func main() {
 	http.ListenAndServe(":"+os.Getenv("PORT"), nil)
 }
 
-func redisURL() string {
+func redisOptions() *redis.Options {
 	json, err := simplejson.NewJson([]byte(os.Getenv("VCAP_SERVICES")))
 	if err != nil {
 		log.Fatal("VCAP_SERVICES must be set!")
@@ -208,7 +204,11 @@ func redisURL() string {
 	hostname := credentials.Get("hostname").MustString()
 	port := credentials.Get("port").MustString()
 	password := credentials.Get("password").MustString()
-	return fmt.Sprintf("redis://:%s@%s:%s", password, hostname, port)
+	return &redis.Options{
+		Addr:     hostname + ":" + port,
+		Password: password,
+		DB:       0, // use default DB
+	}
 }
 ```
 
@@ -345,21 +345,11 @@ $ glide get github.com/cloudfoundry-community/go-cfenv
 [INFO] Preparing to install 1 package.
 [INFO] Importing github.com/cloudfoundry-community/go-cfenv
 [INFO] Downloading dependencies. Please wait...
-[INFO] Fetching updates for github.com/bitly/go-simplejson.
 [INFO] Fetching updates for github.com/cloudfoundry-community/go-cfenv.
-[INFO] Fetching updates for github.com/garyburd/redigo.
+[INFO] Fetching updates for github.com/bitly/go-simplejson.
+[INFO] Fetching updates for gopkg.in/redis.v4.
 [INFO] Resolving imports
 [INFO] Downloading dependencies. Please wait...
-```
-
-`go-simplejson`は不要なのでremoveします。
-
-``` console
-$ glide rm github.com/bitly/go-simplejson
-[INFO] Preparing to remove 1 packages.
-[INFO] Resolving imports
-[INFO] Package github.com/mitchellh/mapstructure found in vendor/ folder
-[INFO] Package github.com/garyburd/redigo/internal found in vendor/ folder
 ```
 
 `go-cfenv`を使うようにアプリケーションを修正します。
@@ -375,21 +365,19 @@ import (
 	"time"
 
 	"github.com/cloudfoundry-community/go-cfenv"
-	"github.com/garyburd/redigo/redis"
+
+	"gopkg.in/redis.v4"
 )
 
 func main() {
-	c, err := redis.DialURL(redisURL())
-	if err != nil {
-		log.Fatal("Error! => ", err)
-	}
+	c := redis.NewClient(redisOptions())
 	defer c.Close()
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		s, e := redis.String(c.Do("GET", "now"))
+		s, e := c.Get("now").Result()
 		if e != nil {
 			now := time.Now().Format("2006-01-02T15:04:05Z0700")
-			c.Do("SET", "now", now)
+			c.Set("now", now, 0)
 			s = now
 		}
 		fmt.Fprint(w, "Hello. It's "+s+" now")
@@ -397,19 +385,23 @@ func main() {
 	http.ListenAndServe(":"+os.Getenv("PORT"), nil)
 }
 
-func redisURL() string {
+func redisOptions() *redis.Options {
 	appEnv, err := cfenv.Current()
 	if err != nil {
 		log.Fatal("VCAP_SERVICES and VCAP_APPLICATION must be set!")
 	}
-	redis, err := appEnv.Services.WithName("myredis")
+	r, err := appEnv.Services.WithName("myredis")
 	if err != nil {
 		log.Fatal(err)
 	}
-	hostname, _ := redis.CredentialString("hostname")
-	port, _ := redis.CredentialString("port")
-	password, _ := redis.CredentialString("password")
-	return fmt.Sprintf("redis://:%s@%s:%s", password, hostname, port)
+	hostname, _ := r.CredentialString("hostname")
+	port, _ := r.CredentialString("port")
+	password, _ := r.CredentialString("password")
+	return &redis.Options{
+		Addr:     hostname + ":" + port,
+		Password: password,
+		DB:       0, // use default DB
+	}
 }
 ```
 
