@@ -1,4 +1,4 @@
-## Blue-Greenデプロイ
+## Blue-Greenデプロイ (Java編)
 
 [Blue-Greenデプロイ](http://martinfowler.com/bliki/BlueGreenDeployment.html)はBlueとGreenとよばれる2つの環境を用意して、ルーティングを切り替えることによりダウンタイムリスクを低減させる手法です。
 
