@@ -294,6 +294,48 @@ Spring Boot以外のアプリケーションを作成する場合は、環境変
  }
 ```
 
+#### Spring Cloud Connectors
+
+Spring Auto Reconfigureは便利ですが、コネクションプールやタイムアウトの設定ができません。次のSpring Cloud Connectorを利用すると環境変数`VCAP_SERVICES`から接続情報を取得してデータアクセス必要なオブジェクト（RDBMSの場合は`DataSource`、Redisの場合は`RedisConnectionFactory`）
+
+``` xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-spring-service-connector</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-cloudfoundry-connector</artifactId>
+</dependency>
+```
+
+次にSpring Cloud Connectorsを使用した次のJavaConfigを作成しましょう。
+
+
+``` java
+package com.example;
+
+import org.springframework.cloud.config.java.AbstractCloudConfig;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+
+@Configuration
+@Profile("cloud") // Cloud Foundry上でのみ有効なプロファイル
+public class CloudConfig extends AbstractCloudConfig {
+
+  @Bean
+  RedisConnectionFactory redisConnectionFactory() {
+    return connectionFactory().redisConnectionFactory();
+  }
+}
+```
+
+`RedisConnectionFactory`の詳細な設定方法は[ドキュメント](http://cloud.spring.io/spring-cloud-connectors/spring-cloud-spring-service-connector.html#_redis)を参照してください。
+
+Spring Cloud Connectorsを使用する場合は**Auto Reconfigureは無効になります**。
+
 #### (Advanced) Auto ReconfigureによるBeanの差し替えができない場合の対応
 
 Auto ReconfigureによるBeanの差し替えができない場合は、手動でRedisの接続先情報を定義する必要があります。
@@ -321,8 +363,6 @@ spring.redis.host=${vcap.services.myredis.credentials.hostname}
 spring.redis.port=${vcap.services.myredis.credentials.port}
 spring.redis.password=${vcap.services.myredis.credentials.password}
 ```
-
-他にも[Spring Cloud Connectors](http://cloud.spring.io/spring-cloud-connectors/)を使う方法もありますが、割愛します。[この記事](https://spring.io/blog/2015/04/27/binding-to-data-services-with-spring-boot-in-cloud-foundry)が詳しいです。
 
 なお、Auto Reconfigureは以下のように環境変数を設定すれば無効化できます。
 
