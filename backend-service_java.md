@@ -296,7 +296,7 @@ Spring Boot以外のアプリケーションを作成する場合は、環境変
 
 #### Spring Cloud Connectors
 
-Spring Auto Reconfigureは便利ですが、コネクションプールやタイムアウトの設定ができません。次のSpring Cloud Connectorを利用すると環境変数`VCAP_SERVICES`から接続情報を取得してデータアクセス必要なオブジェクト（RDBMSの場合は`DataSource`、Redisの場合は`RedisConnectionFactory`）
+Spring Auto Reconfigureは便利ですが、コネクションプールの接続数やタイムアウトの設定ができません。次のSpring Cloud Connectorを利用すると環境変数`VCAP_SERVICES`から接続情報を取得してデータアクセス必要なオブジェクト（RDBMSの場合は`DataSource`、Redisの場合は`RedisConnectionFactory`）
 
 ``` xml
 <dependency>
