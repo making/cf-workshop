@@ -8,7 +8,9 @@
 
 1. [事前準備 / Prerequisite](prerequisite.md)
 1. 簡単なアプリケーションをデプロイ / Deploy hello world [[Java](deploy-application_java.md)] [[Go](deploy-application_go.md)] [[PHP](deploy-application_php.md)] [[Python](deploy-application_python.md)]
-1. バックエンドサービスの利用 / Use backend service [[Java](backend-service_java.md)] [[Go](backend-service_go.md)]
+1. バックエンドサービス(Redis)の利用 / Use backend service [[Java](backend-service-redis_java.md)] [[Go](backend-service-redis_go.md)]
+1. バックエンドサービス(MySQL)の利用 / Use backend service [[Java](backend-service-mysql_java.md)]
+1. バックエンドサービス(Oracle Database)の利用 / Use backend service [[Java](backend-service-oracle_java.md)]
 1. スケールアウト / Scale out application [[Java](scale-out_java.md)] [[Go](scale-out_go.md)]
 1. [PCF Metricsによるアプリケーションのモニタリング / Application monitoring with PCF Metrics](pcf-metrics.md) 
 1. [アプリケーションログの転送 / Forward application log](logging.md)
@@ -19,9 +21,9 @@ To be continued
 
 ## Backlog
 
-- [ ] User Provided Serviceの利用
 - [ ] Organization / Space / User / Roleの作成
 - [ ] Auto Scaleの利用
+- [x] User Provided Serviceの利用
 - [x] PCF Devを使用したローカルCloud Foundry環境
 - [x] Service Brokerの作成 ([別資料](https://github.com/Pivotal-Japan/service-broker-workshop))
 - [x] PCF Metrixの利用
