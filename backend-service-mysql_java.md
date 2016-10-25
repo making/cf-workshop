@@ -383,6 +383,12 @@ $ curl http://hello-db-tmaki.cfapps.io/messages
 $ curl -XDELETE http://hello-db-tmaki.cfapps.io/messages/2
 ```
 
+> **Note**
+> 
+> 作成したアプリケーションにはHAL BrowserというREST APIの仕様や動作を確認するための画面が組み込まれています。 `http://hello-db-<your name>.cfapps.io/`にアクセスしてください。
+> ![image](https://qiita-image-store.s3.amazonaws.com/0/1852/70d21411-d4d8-6447-c488-45f4b711dbf5.png)
+
+
 アプリケーションにはMySQLに関する設定を全く行いませんでしたが、何が起きているのでしょうか。`cf logs <アプリケーション名> --recent`コマンドでログを見てみましょう。
 
 ```
