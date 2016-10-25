@@ -1,5 +1,7 @@
 ## スケールアウト (Go編)
 
+本章では[バックエンドサービスRedisの利用](backend-service-redis_go.md)で作成したプロジェクトを利用します。
+
 Cloud Foundryではスケールアウトも簡単です。`cf scale -i <Instance Count> <App>`で指定したインスタンス数にスケールアウトできます。
 
 
