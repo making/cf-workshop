@@ -93,6 +93,20 @@ $ mv ~/Downloads/ojdbc7.jar vendor/com/oracle/ojdbc7/12.1.0.1.0/
 </project>
 ```
 
+`vendor/com/oracle/ojdbc7/12.1.0.1.0/ojdbc7-12.1.0.1.0.pom`
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.oracle</groupId>
+    <artifactId>ojdbc7</artifactId>
+    <version>12.1.0.1.0</version>
+</project>
+```
+
 以下のコマンドを実行してOravle JDBCドライバーをローカルのMavenレポジトリにインストールしてください。
 
 ```
