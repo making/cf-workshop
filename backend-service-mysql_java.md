@@ -185,39 +185,6 @@ OK
 ```
 
 
-``` console
-$ cf create-service cleardb spark mydb
-```
-
-```
-$ cf services
-Getting services in org APJ / space staging as tmaki@example.com...
-OK
-
-name                      service         plan      bound apps     last operation
-mydb                      cleardb         spark                    create succeeded
-```
-
-```
-$ cf push hello-db-tmaki -p target/hello-db-0.0.1-SNAPSHOT.jar --no-start
-Creating app hello-db-tmaki in org APJ / space staging as tmaki@pivotal.io...
-OK
-
-Creating route hello-db-tmaki.cfapps.io...
-OK
-
-Binding hello-db-tmaki.cfapps.io to hello-db-tmaki...
-OK
-
-Uploading hello-db-tmaki...
-Uploading app files from: /var/folders/15/fww24j3d7pg9sz196cxv_6xm4nvlh8/T/unzipped-app028999524
-Uploading 461.1K, 99 files
-Done uploading               
-OK
-
-```
-
-
 次に`cf bind-service <App> <Service Instance>`コマンドで
 
 ``` console
