@@ -21,6 +21,7 @@ To be continued
 
 ## Backlog
 
+- [ ] One-Off Taskの実行
 - [ ] Organization / Space / User / Roleの作成
 - [ ] Auto Scaleの利用
 - [x] User Provided Serviceの利用
