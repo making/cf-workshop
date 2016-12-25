@@ -23,7 +23,7 @@ package com.example;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 // ここから追加
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 // ここまで
 
@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloCfApplication {
 
         // ここから追加
-        @RequestMapping("/") 
+        @GetMapping("/") 
         String hello() {
                 return "Hello World!";
         }
@@ -48,7 +48,7 @@ public class HelloCfApplication {
 
 ``` console
 $ cd hello-cf
-$ ./mvnw clean package
+$ ./mvnw package -Dmaven.test.skip=true
 ```
 
 まずはローカルでアプリケーションを実行してみましょう。
