@@ -62,7 +62,7 @@ Cloud Foundry内のRouterによってHTTPリクエストは2インスタンス�
 折角なので、どちらのインスタンスにアクセスしているか分かるようにソースコードを修正しましょう。
 
 ``` java
-    @RequestMapping("/")
+    @GetMapping("/")
     String hello() {
         return greeter.hello() + " (" + System.getenv("CF_INSTANCE_INDEX") + ")"; // この行を変更
     }
@@ -71,7 +71,7 @@ Cloud Foundry内のRouterによってHTTPリクエストは2インスタンス�
 今度はメモリ512MB、インスタンス数2を指定して`cf push`します。
 
 ``` console
-$ ./mvnw clean package
+$ ./mvnw package -Dmaven.test.skip=true
 $ cf push hello-redis-tmaki -p target/hello-redis-0.0.1-SNAPSHOT.jar -m 512m -i 2
 ```
 
