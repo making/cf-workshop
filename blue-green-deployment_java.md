@@ -18,7 +18,7 @@ applications:
 `HelloCfApplication.java`の`hello`メソッドを少しだけ修正してください。
 
 ``` java
-    @RequestMapping("/")
+    @GetMapping("/")
     String hello() {
         return "Hello World! V1"; // V1を追加
     }
@@ -27,7 +27,7 @@ applications:
 これをビルドしてpushします。これはBlueに相当します。
 
 ``` console
-$ ./mvnw clean package
+$ ./mvnw package -Dmaven.test.skip=true
 $ cf push
 ```
 
@@ -45,7 +45,7 @@ $ while true; do curl http://hello-tmaki.cfapps.io; echo; sleep 1;done
 `HelloCfApplication.java`の`hello`メソッドを少しだけ修正してください。
 
 ``` java
-    @RequestMapping("/")
+    @GetMapping("/")
     String hello() {
         return "Hello World! V2"; // V2に変更
     }
@@ -54,7 +54,7 @@ $ while true; do curl http://hello-tmaki.cfapps.io; echo; sleep 1;done
 ビルドしてpushします。これはGreenに相当します。
 
 ``` console
-$ ./mvnw clean package
+$ .//mvnw package -Dmaven.test.skip=true
 $ cf push hello-tmaki-green # manifest内のapplication nameをoverride
 ```
 
