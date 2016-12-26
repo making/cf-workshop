@@ -37,7 +37,7 @@ $ cf push
 現在のアプリケーションのバージョンを確認するために、`curl`を定期的に実行しましょう。
 
 ``` console
-$ while true; do curl http://hello-tmaki.cfapps.io; echo; sleep 1;done
+$ while true; do curl -s http://hello-tmaki.cfapps.io; echo; sleep 1;done
 ```
 
 ![image](https://qiita-image-store.s3.amazonaws.com/0/1852/b47937f2-9d32-23fd-e386-de7018394372.png)
@@ -54,7 +54,7 @@ $ while true; do curl http://hello-tmaki.cfapps.io; echo; sleep 1;done
 ビルドしてpushします。これはGreenに相当します。
 
 ``` console
-$ .//mvnw package -Dmaven.test.skip=true
+$ ./mvnw package -Dmaven.test.skip=true
 $ cf push hello-tmaki-green # manifest内のapplication nameをoverride
 ```
 
