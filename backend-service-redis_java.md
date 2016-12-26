@@ -126,7 +126,7 @@ myredis   rediscloud   30mb                create succeeded
 
 ``` console
 $ cd hello-redis
-$ ./mvnw clean package
+$ ./mvnw package -Dmaven.test.skip=true
 $ cf push hello-redis-tmaki -p target/hello-redis-0.0.1-SNAPSHOT.jar --no-start
 Creating app hello-redis-tmaki in org tmaki / space development as ****@gmail.com...
 OK
