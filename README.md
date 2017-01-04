@@ -29,3 +29,4 @@ To be continued
 - [x] Service Brokerの作成 ([別資料](https://github.com/Pivotal-Japan/service-broker-workshop))
 - [x] PCF Metrixの利用
 - [x] ログの転送にlogit.ioを追加
+- [x] RabbitMQの利用([別資料](https://github.com/Pivotal-Japan/spring-cloud-stream-tutorial))
