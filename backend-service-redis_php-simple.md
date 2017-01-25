@@ -29,14 +29,8 @@ $redis = new Redis();
 $redis->connect($credentials->hostname, $credentials->port);
 $redis->auth($credentials->password);
 
-// ここから変更
-$now = $redis->get('time');
-if (!$now) {
-    $now = date('c');
-    $redis->set('time', $now);
-}
-
-echo 'Hello. It\'s ' . $now . ' now';
+// 接続結果を返す
+echo $redis->ping();
 ```
 
 次にPHPのRedis拡張モジュールを使用するために、`.bp-config`ディレクトリを作成してください。(**Windowsの場合はコマンドプロンプトやGit Bashなど、コマンドラインで作成してください。**)
@@ -238,6 +232,15 @@ $credentials = $service[0]->credentials;
 $redis = new Redis();
 $redis->connect($credentials->hostname, $credentials->port);
 $redis->auth($credentials->password);
+
+// ここから変更
+$now = $redis->get('time');
+if (!$now) {
+    $now = date('c');
+    $redis->set('time', $now);
+}
+
+echo 'Hello. It\'s ' . $now . ' now';
 ```
 
 再度、`cf push`してください。
