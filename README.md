@@ -14,7 +14,7 @@
 1. スケールアウト / Scale out application [[Java](scale-out_java.md)] [[Go](scale-out_go.md)] [[PHP(簡易版)](scale-out_php-simple.md)]
 1. [PCF Metricsによるアプリケーションのモニタリング / Application monitoring with PCF Metrics](pcf-metrics.md) 
 1. [アプリケーションログの転送 / Forward application log](logging.md)
-1. Blue-Greenデプロイ / Blue-Green deployment [[Java](blue-green-deployment_java.md)] [[Go](blue-green-deployment_go.md)]
+1. Blue-Greenデプロイ / Blue-Green deployment [[Java](blue-green-deployment_java.md)] [[Go](blue-green-deployment_go.md)] [[PHP(簡易版)](blue-green-deployment_php-simple.md)]
 1. [PCF Devを用いたローカルCloud Foundry環境](pcf-dev.md)
 
 To be continued
