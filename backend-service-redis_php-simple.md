@@ -258,5 +258,4 @@ $ cf push hello-redis-tmaki
 > **Note**
 > 
 > [cf-helper-php](https://github.com/cloudfoundry-community/cf-helper-php)は環境変数`VCAP_SERVICES`をパースして、代表的なサービス（RDB, Redis, MongoDB）への接続情報を簡単に作成できるライブラリです。
-> https://github.com/coudfoundry-community/cf-helper-php
 > このライブラリを使うと、ソースコードからサービス名(ここでは`rediscloud`)を隠蔽することができます。
