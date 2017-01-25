@@ -148,25 +148,26 @@ $ cf unmap-route hello-tmaki-green cfapps.io -n hello-tmaki
 
 ### Autopilotプラグインを使う
 
-[Autopilotプラグイン](https://github.com/concourse/autopilot)を使うと、上記の同様な操作をコマンド一つで実行できます。
+[Autopilotプラグイン](https://github.com/contraband/autopilot)を使うと、上記の同様な操作をコマンド一つで実行できます。
 
-プラグインのインストール方法は、
+プラグインのインストール方法は、[Releaseページ](https://github.com/contraband/autopilot/releases)からOSにあったバイナリをダウンロードして、
 
-Macの場合、
+
 
 ``` console
-$ go get github.com/concourse/autopilot
-$ cf install-plugin $GOPATH/bin/autopilot
-```
-
-Windowsの場合、
-
-```` console
-$ go get github.com/concourse/autopilot
-$ cf install-plugin $env:GOPATH/bin/autopilot.exe
+$ chmod +x path/to/downloaded/binary # (Linux/Macの場合)
+$ cf install-plugin path/to/downloaded/binary
 ```
 
 です。
+
+`zero-downtime-push`コマンドが追加されます。
+
+``` console
+$ cf help -a | grep zero
+   zero-downtime-push                     Perform a zero-downtime push of an application over the top of an old one
+```
+
 
 `zero-downtime-push`コマンドが追加されます。
 
