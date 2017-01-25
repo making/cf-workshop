@@ -11,7 +11,7 @@ $ mkdir hello-cf
 $ cd hello-cf
 ```
 
-`index.php`をさくせうして、次の内容を記述してください。
+`index.php`を作成して、次の内容を記述してください。
 
 ``` php
 <?php
