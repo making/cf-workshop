@@ -19,7 +19,7 @@ $ cd hello-redis
 ``` php
 <?php
 // Redisの接続情報を環境変数VCAP_SERVICESより取得
-$vcap_services = json_decode($_ENV['VCAP_SERVICES']);
+$vcap_services = json_decode(getenv('VCAP_SERVICES'));
 $service_name = 'rediscloud'; // 次に選ぶサービス名
 $service = $vcap_services->$service_name;
 $credentials = $service[0]->credentials;
@@ -223,7 +223,7 @@ $ cf start hello-redis-tmaki
 ``` php
 <?php
 // Redisの接続情報を環境変数VCAP_SERVICESより取得                                                                                                                                                                 
-$vcap_services = json_decode($_ENV['VCAP_SERVICES']);
+$vcap_services = json_decode(getenv('VCAP_SERVICES'));
 $service_name = 'rediscloud';
 $service = $vcap_services->$service_name;
 $credentials = $service[0]->credentials;
