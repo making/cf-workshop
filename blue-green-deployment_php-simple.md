@@ -10,7 +10,7 @@ Cloud Foundryでは`cf map-route`、`umnap-route`コマンドによりルーテ�
 ``` yaml
 ---
 applications:
-  - name: hello-redis-tmaki
+  - name: hello-tmaki
     buildpack: php_buildpack
     memory: 32m
 ```
