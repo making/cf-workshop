@@ -121,3 +121,5 @@ Space:          development
 
 これでPWSにアクセスできます。
 
+
+> HTTP Proxyがある場合は、環境変数`https_proxy`を設定してください。[設定方法](https://docs.cloudfoundry.org/cf-cli/http-proxy.html)。
