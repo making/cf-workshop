@@ -69,7 +69,7 @@ $ mv ~/Downloads/ojdbc7.jar vendor/com/oracle/ojdbc7/12.1.0.1.0/
                         <artifactId>maven-install-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>install-coherence</id>
+                                <id>install-ojdbc</id>
                                 <phase>install</phase>
                                 <goals>
                                     <goal>install-file</goal>
