@@ -14,6 +14,7 @@ curl start.spring.io/starter.tgz \
        -d artifactId=hello-db \
        -d baseDir=hello-db \
        -d dependencies=data-rest,data-jpa,data-rest-hal,actuator,mysql \
+       -d packageName=com.example \
        -d applicationName=HelloDbApplication | tar -xzvf -
 ```
 
