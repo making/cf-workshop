@@ -11,6 +11,7 @@ $ curl start.spring.io/starter.tgz \
        -d artifactId=hello-cf \
        -d baseDir=hello-cf \
        -d dependencies=web,actuator \
+       -d packageName=com.example \
        -d applicationName=HelloCfApplication | tar -xzvf -
 ```
 
