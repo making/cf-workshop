@@ -273,6 +273,14 @@ No running env variables have been set
 No staging env variables have been set
 ```
 
+> 【User Provided Service】
+> 
+> 対象のCloud FoundryにMySQLサービスが存在しない場合、User Provided Serviceを使うことで、既存のMySQLサーバーをあたかもCloud Foundryのサービスインスタンスのように扱うことができます。MySQLの場合、以下の形式で`mydb`サービスインスタンスを作成してください。
+> 
+> ```
+> cf create-user-provided-service mydb -p '{"uri": "mysql://<username>:<password>@<hostname>:<port>/<dbname>"'}
+> ```
+
 サービスインスタンスをバインドしたら`cf start`でアプリケーションを起動しましょう。
 
 ``` console
