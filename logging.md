@@ -18,12 +18,76 @@ Cloud Foundryのアプリケーションログの保存は一時的ですが、�
 
 本チュートリアルでは次の2つのサービスの使い方について見ていきます。
 
+* [Logz.io](#logzioの場合)
 * [Logit.io](#logitioの場合)
 * [Papertrail](#papertrailの場合)
 
-どちらか好きな方を選択してチュートリアルを進めてください。
+いずれか好きな方を選択してチュートリアルを進めてください。
 
-> 本チュートリアルを[PCF Dev](pcf-dev.md)で実施する場合は、[v0.16.0](https://github.com/pivotal-cf/pcfdev/releases/tag/v0.16.0)以上を使用してください
+### Logz.ioの場合
+
+[Logz.io](https://logz.io/)のサービスを利用しましょう。
+
+> Logz.io公式のCloud Foundryチュートリアルは[こちら](https://logz.io/blog/cloud-foundry-elk-stack/)("Shipping to Logz.io"以降)です。
+
+"Enter Your Email"にメールアドレスを入力して、"Free Trial"をクリックしてください。
+
+![image.png](https://qiita-image-store.s3.amazonaws.com/0/1852/85b36c37-770b-90fd-9a51-454fc4e47344.png)
+
+アカウント情報を入力して、"Start Your Free Trial"をクリックしてください。
+
+ログインできたら、[Dashboard](https://app.logz.io)にアクセスして、バーの中央のの"Log Shippings"をクリックしてください。
+
+![image.png](https://qiita-image-store.s3.amazonaws.com/0/1852/f5b87bb7-f802-74f6-7af5-3c509a29b9fd.png)
+
+左の"Platforms"メニューから"Applications"を開き、"[Cloud Foundry](https://app.logz.io/#/dashboard/data-sources/Cloud-Foundry)"を選択してください。
+
+![image.png](https://qiita-image-store.s3.amazonaws.com/0/1852/97832eb9-15a8-899b-683b-3a8042d28e0a.png)
+
+
+[Step1]のテキストをコピーしてください。
+
+![image.png](https://qiita-image-store.s3.amazonaws.com/0/1852/fcf3776c-3cc4-2ce7-d353-648eac938731.png)
+
+次のような形式になります。
+
+```
+cf cups my-log-drain -l https://listener.logz.io:8081?token=<TOKEN>
+```
+
+実行するとサービスインスタンスが作成され、`cf services`で指定したサービスインスタンス名が表示されることを確認できます。
+
+``` console
+$ cf services
+Getting services in org tmaki / space development as ****@gmail.com...
+OK
+
+name            service         plan   bound apps          last operation   
+myredis         rediscloud      30mb   hello-redis-tmaki   create succeeded   
+my-log-drain    user-provided 
+```
+
+Redisの場合と同様にログ転送サービスインスタンスも`hello-redis-<your name>`にバインドしてrestartしてください。
+
+```
+$ cf bind-service hello-redis-tmaki my-log-drain
+$ cf restart hello-redis-tmaki
+```
+
+これで`hello-redis-tmaki`のアプリケーションログはLogz.ioへ転送されます。
+
+ダッシュボードからKibanaにアクセスしてください。虫眼鏡ボタンをクリックすると再検索されます。
+
+![image.png](https://qiita-image-store.s3.amazonaws.com/0/1852/f1db62f3-f6d2-56e1-6850-f6ae946e5e8b.png)
+
+
+> 転送されるようになるまで、タイムラグがあります。Kibanaでログが表示されるようになるまでは、`cf restart`後もアプリケーションにアクセスし、ログを発生してください。
+
+アプリケーションログの確認が終わったら`hello-redis-tmaki`を削除してください。
+
+``` console
+$ cf delete hello-redis-tmaki
+```
 
 
 ### Logit.ioの場合
@@ -59,8 +123,8 @@ LogstashのURLとtcpのPORT番号をメモしてください。
 `cf create-user-provided-service <Service Instance Name> -l syslog://<URL:PORT>`を実行し、アプリケーションログ転送サービスインスタンスを作成します。
 
 ``` console
-$ cf create-user-provided-service hello-log -l syslog://40da81a6-797b-4a3c-925c-8574d419e211-ls.logit.io:12394
-Creating user provided service hello-log in org tmaki / space development as ****@gmail.com...
+$ cf create-user-provided-service my-log-drain -l syslog://40da81a6-797b-4a3c-925c-8574d419e211-ls.logit.io:12394
+Creating user provided service my-log-drain in org tmaki / space development as ****@gmail.com...
 OK
 ```
 
@@ -71,15 +135,15 @@ $ cf services
 Getting services in org tmaki / space development as ****@gmail.com...
 OK
 
-name         service         plan   bound apps          last operation   
-myredis      rediscloud      30mb   hello-redis-tmaki   create succeeded   
-hello-log    user-provided 
+name            service         plan   bound apps          last operation   
+myredis         rediscloud      30mb   hello-redis-tmaki   create succeeded   
+my-log-drain    user-provided 
 ```
 
 Redisの場合と同様にログ転送サービスインスタンスも`hello-redis-<your name>`にバインドしてrestartしてください。
 
 ```
-$ cf bind-service hello-redis-tmaki hello-log
+$ cf bind-service hello-redis-tmaki my-log-drain
 $ cf restart hello-redis-tmaki
 ```
 
@@ -137,8 +201,8 @@ EmailとPasswordを入力して、「Start Logging - Free Plan」をクリック
 `cf create-user-provided-service <Service Instance Name> -l syslog://<URL:PORT>`を実行し、アプリケーションログ転送サービスインスタンスを作成します。
 
 ``` console
-$ cf create-user-provided-service hello-log -l syslog://logs4.papertrailapp.com:37190
-Creating user provided service hello-log in org tmaki / space development as ****@gmail.com...
+$ cf create-user-provided-service my-log-drain -l syslog://logs4.papertrailapp.com:37190
+Creating user provided service my-log-drain in org tmaki / space development as ****@gmail.com...
 OK
 ```
 
@@ -149,15 +213,15 @@ $ cf services
 Getting services in org tmaki / space development as ****@gmail.com...
 OK
 
-name         service         plan   bound apps          last operation   
-myredis      rediscloud      30mb   hello-redis-tmaki   create succeeded   
-hello-log    user-provided 
+name            service         plan   bound apps          last operation   
+myredis         rediscloud      30mb   hello-redis-tmaki   create succeeded   
+my-log-drain    user-provided 
 ```
 
 Redisの場合と同様にログ転送サービスインスタンスも`hello-redis-<your name>`にバインドしてrestartしてください。
 
 ```
-$ cf bind-service hello-redis-tmaki hello-log
+$ cf bind-service hello-redis-tmaki my-log-drain
 $ cf restart hello-redis-tmaki
 ```
 
