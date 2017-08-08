@@ -1,4 +1,4 @@
-## バックエンドサービスOracle Databaseの利用 (Java編)
+## バックエンドサービスOracle Databaseの利用 (Java編, JPA版)
 
 次はサービスとしてOracle Databaseを使います。OracleデータベースのサービスはCloud Foundryのマーケットプレースには用意されていません。
 この場合は、[Uer Provided Service](https://docs.cloudfoundry.org/devguide/services/user-provided.html)を使用してCloud Foundry外でプロビジョニングされたインスタンスをCloud Foundryのサービスインスタンスとして扱います。
