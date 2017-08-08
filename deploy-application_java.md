@@ -196,8 +196,8 @@ Cloud Foundry上にデプロイされたアプリケーションにもアクセ�
 > Cloud Foundryでは`cf set-env`で環境変数を設定でき、環境変数でこのプロパティを設定可能です。
 > 
 > ```
-> cf set-env hello-<your name> management.security.enabled false
-> cf restart hello-<your name>
+> cf set-env hello-tmaki management.security.enabled false
+> cf restart hello-tmaki
 > ```
 >
 > もちろん、プロダクション用時には適切な認可設定が必要です。
@@ -342,8 +342,8 @@ binary_buildpack       9          true      false    binary_buildpack-cached-v1.
 Buildpackは`-b`で明示的に指定できます。明示することで自動検出のための時間を短縮できます。
 
 ``` console
-$ cf push hello -p target/hello-cf-0.0.1-SNAPSHOT.jar --random-route -b java_buildpack
-Updating app hello in org tmaki / space development as ****@gmail.com...
+$ cf push hello-tmaki -p target/hello-cf-0.0.1-SNAPSHOT.jar -b java_buildpack
+Updating app hello-tmaki in org tmaki / space development as ****@gmail.com...
 OK
 
 Uploading hello...
@@ -396,7 +396,7 @@ OK
 requested state: started
 instances: 1/1
 usage: 1G x 1 instances
-urls: hello-mooned-falsification.cfapps.io
+urls: hello-tmaki.cfapps.io
 last uploaded: Thu Mar 17 08:23:17 UTC 2016
 stack: cflinuxfs2
 buildpack: java_buildpack
@@ -409,15 +409,15 @@ buildpack: java_buildpack
 
 ここまで`cf`コマンドで指定してきたオプションは`manifest.yml`というyamlファイルに定義できます。
 
-* `cf push hello -p target/hello-cf-0.0.1-SNAPSHOT.jar -b java_buildpack`
-* `cf set-env hello management.security.enabled false`
+* `cf push hello-tmaki -p target/hello-cf-0.0.1-SNAPSHOT.jar -b java_buildpack`
+* `cf set-env hello-tmaki management.security.enabled false`
 
 を`manifest.yml`で表すと、
 
 ``` yaml
 ---
 applications:
-  - name: hello
+  - name: hello-tmaki
     path: target/hello-cf-0.0.1-SNAPSHOT.jar
     buildpack: java_buildpack
     env:
