@@ -22,7 +22,8 @@ $ curl start.spring.io/starter.tgz \
 ``` java
 package com.example;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.time.OffsetDateTime;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.Cacheable;
@@ -31,14 +32,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.OffsetDateTime;
-
 @SpringBootApplication
 @RestController
 @EnableCaching // キャッシュ機能を有効にします
 public class HelloRedisApplication {
-	@Autowired
-	Greeter greeter;
+	private final Greeter greeter;
+
+	public HelloRedisApplication(Greeter greeter) {
+		this.greeter = greeter;
+	}
 
 	@GetMapping("/")
 	String hello() {
