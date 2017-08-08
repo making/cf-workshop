@@ -78,10 +78,9 @@ $ cf restart hello-redis-tmaki
 
 ダッシュボードからKibanaにアクセスしてください。虫眼鏡ボタンをクリックすると再検索されます。
 
-![image.png](https://qiita-image-store.s3.amazonaws.com/0/1852/f1db62f3-f6d2-56e1-6850-f6ae946e5e8b.png)
-
-
 > 転送されるようになるまで、タイムラグがあります。Kibanaでログが表示されるようになるまでは、`cf restart`後もアプリケーションにアクセスし、ログを発生してください。
+
+![image.png](https://qiita-image-store.s3.amazonaws.com/0/1852/f1db62f3-f6d2-56e1-6850-f6ae946e5e8b.png)
 
 アプリケーションログの確認が終わったら`hello-redis-tmaki`を削除してください。
 
