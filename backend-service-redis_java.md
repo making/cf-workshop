@@ -13,6 +13,7 @@ $ curl start.spring.io/starter.tgz \
        -d artifactId=hello-redis \
        -d baseDir=hello-redis \
        -d dependencies=web,actuator,cache,redis \
+       -d packageName=com.example \
        -d applicationName=HelloRedisApplication | tar -xzvf -
 ```
 
