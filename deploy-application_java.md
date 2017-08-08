@@ -421,7 +421,7 @@ applications:
     path: target/hello-cf-0.0.1-SNAPSHOT.jar
     buildpack: java_buildpack
     env:
-      management.security.enabled false
+      management.security.enabled: false
 ```
 
 となります。
