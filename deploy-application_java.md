@@ -287,7 +287,7 @@ Deleting app hello-tmaki in org tmaki / space development as ****@gmail.com...
 OK
 ```
 
-### `--random-route`を使う
+### (オプション) `--random-route`を使う
 
 先ほどはアプリケーション名に`-<your name>`をつけ一意にしました。`hello`だと重複する可能性が高いためです。実はアプリケーション名自体はスペース内で一意であればよく、一意にすべきはホスト名(`xxxx.cfapps.io`の`xxxx`の部分)です。これは`-n`または`--hostname`で指定できます。
 一意なホスト名にするには`--random-route`を追加すれば良いです。
@@ -409,7 +409,10 @@ buildpack: java_buildpack
 
 ここまで`cf`コマンドで指定してきたオプションは`manifest.yml`というyamlファイルに定義できます。
 
-`cf push hello -p target/hello-cf-0.0.1-SNAPSHOT.jar --random-route -b java_buildpack`を`manifest.yml`で表すと、
+* `cf push hello -p target/hello-cf-0.0.1-SNAPSHOT.jar -b java_buildpack`
+* `cf set-env hello management.security.enabled false`
+
+を`manifest.yml`で表すと、
 
 ``` yaml
 ---
@@ -417,7 +420,8 @@ applications:
   - name: hello
     path: target/hello-cf-0.0.1-SNAPSHOT.jar
     buildpack: java_buildpack
-    random-route: true
+    env:
+      management.security.enabled false
 ```
 
 となります。
