@@ -1,4 +1,4 @@
-## バックエンドサービスMySQLの利用 (Java,MyBatis編)
+## バックエンドサービスMySQLの利用 (Java編,MyBatis版)
 
 次はサービスとしてMySQLを使います。
 
