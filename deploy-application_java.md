@@ -323,16 +323,17 @@ http://hello-mooned-falsification.cfapps.io)にアクセスできます。
 $ cf buildpacks
 Getting buildpacks...
 
-buildpack              position   enabled   locked   filename   
-staticfile_buildpack   1          true      false    staticfile_buildpack-cached-v1.3.1.zip   
-java_buildpack         2          true      false    java-buildpack-v3.6.zip   
-ruby_buildpack         3          true      false    ruby_buildpack-cached-v1.6.13.zip   
-nodejs_buildpack       4          true      false    nodejs_buildpack-cached-v1.5.5.zip   
-go_buildpack           5          true      false    go_buildpack-cached-v1.7.2.zip   
-python_buildpack       6          true      false    python_buildpack-cached-v1.5.4.zip   
-php_buildpack          7          true      false    php_buildpack-cached-v4.3.5.zip   
-liberty_buildpack      8          true      false    liberty_buildpack.zip   
-binary_buildpack       9          true      false    binary_buildpack-cached-v1.0.1.zip 
+buildpack                    position   enabled   locked   filename
+staticfile_buildpack         1          true      false    staticfile_buildpack-cached-v1.4.12.zip
+java_buildpack               2          true      false    java-buildpack-offline-v3.18.zip
+ruby_buildpack               3          true      false    ruby_buildpack-cached-v1.6.46.zip
+nodejs_buildpack             4          true      false    nodejs_buildpack-cached-v1.6.5.zip
+go_buildpack                 5          true      false    go_buildpack-cached-v1.8.6.zip
+python_buildpack             6          true      false    python_buildpack-cached-v1.5.22.zip
+php_buildpack                7          true      false    php_buildpack-cached-v4.3.39.zip
+dotnet_core_buildpack        8          true      false    dotnet-core_buildpack-cached-v1.0.23.zip
+dotnet_core_buildpack_beta   9          true      false    dotnet-core_buildpack-cached-v1.0.0.zip
+binary_buildpack             10         true      false    binary_buildpack-cached-v1.0.14.zip
 ```
 
 デフォルトでは、`cf push`でアーティファクトをアップロードした後、利用可能なBuildpackを全てダウンロードし、優先順(`position`順)にチェックし、対象のBuildpackを特定しDroplet(実行可能な形式)を作成します。
