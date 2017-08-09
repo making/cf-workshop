@@ -7,7 +7,7 @@
 以下のコマンドを実行すると、`hello-cf`フォルダに雛形プロジェクトが生成されます。
 
 ``` console
-$ curl start.spring.io/starter.tgz \
+$ curl https://start.spring.io/starter.tgz \
        -d artifactId=hello-cf \
        -d baseDir=hello-cf \
        -d dependencies=web,actuator \
