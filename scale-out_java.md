@@ -96,7 +96,8 @@ $ cf scale -i 4 hello-redis-tmaki
 以下の環境変数を設定して、アプリケーションのシャットダウンを有効にしましょう。
 
 ``` console
-$ cf set-env hello-redis-tmaki ENDPOINTS_SHUTDOWN_ENABLED true
+$ cf set-env hello-redis-tmaki management.security.enabled false
+$ cf set-env hello-redis-tmaki endpoints.shutdown.enabled true
 $ cf restart hello-redis-tmaki
 ```
 
