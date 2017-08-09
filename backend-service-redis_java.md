@@ -9,7 +9,7 @@
 以下のコマンドで雛形プロジェクトを作成してください。
 
 ``` console
-$ curl start.spring.io/starter.tgz \
+$ curl https://start.spring.io/starter.tgz \
        -d artifactId=hello-redis \
        -d baseDir=hello-redis \
        -d dependencies=web,actuator,cache,redis \
