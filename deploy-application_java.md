@@ -52,6 +52,16 @@ $ cd hello-cf
 $ ./mvnw package -Dmaven.test.skip=true
 ```
 
+> HTTP Proxyがある場合、`.mvn/jvm.config`に次の設定を行ってください
+> 
+> ```
+> -Dhttp.proxyHost=proxy.example.com 
+> -Dhttp.proxyPort=8080
+> -Dhttps.proxyHost=proxy.example.com 
+> -Dhttps.proxyPort=8080 
+> -Dhttp.proxyUser=username 
+> -Dhttp.proxyPassword=password
+
 まずはローカルでアプリケーションを実行してみましょう。
 
 ``` console
