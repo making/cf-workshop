@@ -32,3 +32,10 @@ To be continued
 - [x] PCF Metrixの利用
 - [x] ログの転送にlogit.ioを追加
 - [x] RabbitMQの利用([別資料](https://github.com/Pivotal-Japan/spring-cloud-stream-tutorial))
+
+## 利用規約
+
+無断で本ドキュメントの一部または全部を改変したり、本ドキュメントを用いた二次的著作物を作成することを禁止します。ただし、ドキュメント修正のためのPull Requestは大歓迎です。
+
+----
+© 2017 Pivotal Japan
