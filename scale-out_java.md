@@ -44,6 +44,12 @@ PWSの試用期間中はインスタンスに割り当てるメモリの合計�
 $ cf scale -m 512m hello-redis-tmaki
 ```
 
+> Java Buildpack 4以上でメモリを512MBにしたい場合は次の環境変数を設定してください。（注意： Production環境では使わないでください）
+>
+> cf set-env hello-redis JAVA_OPTS '-XX:ReservedCodeCacheSize=32M -XX:MaxDirectMemorySize=32M'
+> cf set-env hello-redis JBP_CONFIG_OPEN_JDK_JRE '{ memory_calculator: { stack_threads: 30 } }'
+> cf scale -m 512m hello-redis
+
 メモリを変更する場合はアプリケーションの再起動が必要な点に注意してください。
 
 インスタンス数やメモリ数はPWSの管理画面からも変更できます。
