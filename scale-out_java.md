@@ -119,10 +119,14 @@ $ curl -X POST http://hello-redis-tmaki.cfapps.io/shutdown
 
 4つのインスタンスのうち3つのインスタンスがダウンしたため、アプリケーションにアクセスすると残り1つのインスタンスからのみレスポンスがあります。
 
-別のターミナルを立ち上げて次のコマンドを実行しながらシャットダウンさせるとわかりやすいです。
+別のターミナルを二つ立ち上げて次の2つのコマンドをそれぞれお実行しながらシャットダウンさせるとわかりやすいです。
 
 ```
 while true;do curl -s https://hello-redis-tmaki.cfapps.io/;echo;sleep 1;done
+```
+
+```
+while true;do cf app hello-redis-tmaki;sleep 1;done
 ```
 
 
