@@ -119,4 +119,11 @@ $ curl -X POST http://hello-redis-tmaki.cfapps.io/shutdown
 
 4つのインスタンスのうち3つのインスタンスがダウンしたため、アプリケーションにアクセスすると残り1つのインスタンスからのみレスポンスがあります。
 
+別のターミナルを立ち上げて次のコマンドを実行しながらシャットダウンさせるとわかりやすいです。
+
+```
+while true;do curl -s https://hello-redis-tmaki.cfapps.io/;echo;sleep 1;done
+```
+
+
 Cloud Foundryは指定したインスタンス数を保つために自動でインスタンスを再起動させます。しばらくすると再び4つインスタンスからレスポンスがあることを確認できるでしょう。
