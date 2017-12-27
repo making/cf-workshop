@@ -197,10 +197,10 @@ EmailとPasswordを入力して、「Start Logging - Free Plan」をクリック
 ![image](https://qiita-image-store.s3.amazonaws.com/0/1852/57c6c05c-c800-27ff-3641-590c8dc361a5.png)
 
 
-`cf create-user-provided-service <Service Instance Name> -l syslog://<URL:PORT>`を実行し、アプリケーションログ転送サービスインスタンスを作成します。
+`cf create-user-provided-service <Service Instance Name> -l syslog-tls://<URL:PORT>`を実行し、アプリケーションログ転送サービスインスタンスを作成します。
 
 ``` console
-$ cf create-user-provided-service my-log-drain -l syslog://logs4.papertrailapp.com:37190
+$ cf create-user-provided-service my-log-drain -l syslog-tls://logs4.papertrailapp.com:37190
 Creating user provided service my-log-drain in org tmaki / space development as ****@gmail.com...
 OK
 ```
